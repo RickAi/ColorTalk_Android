@@ -2,6 +2,7 @@
 
 ## Reference documents
 * [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
+* [Android Studio Rename Package](http://stackoverflow.com/questions/16804093/android-studio-rename-package)
 
 ## Reference projects
 

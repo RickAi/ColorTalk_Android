@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "de.andreasschrade.androidtemplate"
+        applicationId "navyblue.top.colortalk"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
