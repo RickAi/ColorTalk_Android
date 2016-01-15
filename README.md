@@ -1,5 +1,7 @@
 # ColorTalk
 
+ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供图片交流平台。我们提供了在线聊天、图片修剪、图片存储功能并允许用户使用邮箱注册或者使用已有的第三方账号如 QQ、微信登陆。
+
 ## Reference documents
 * [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
 * [Android Studio Rename Package](http://stackoverflow.com/questions/16804093/android-studio-rename-package)

@@ -8,10 +8,6 @@ import com.umeng.socialize.PlatformConfig;
  * Created by CIR on 16/1/12.
  */
 public class ColorTalkApp extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
 
     //各个平台的配置，建议放在全局Application或者程序入口
     {
@@ -23,4 +19,12 @@ public class ColorTalkApp extends Application {
         //豆瓣RENREN平台目前只能在服务器端配置
         PlatformConfig.setTwitter("3aIN7fuF685MuZ7jtXkQxalyi", "MK6FEYG63eWcpDFgRYw4w9puJhzDl0tyuqWjZ3M7XJuuG7mMbO");
     }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+
+    }
+
 }

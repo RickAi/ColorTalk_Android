@@ -21,9 +21,13 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.mvp.presenter.abs.ILoginPresenter;
+import navyblue.top.colortalk.mvp.presenter.impl.LoginPresenter;
+import navyblue.top.colortalk.mvp.view.abs.ILoginView;
 import navyblue.top.colortalk.util.LogUtil;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity
+        implements View.OnClickListener, ILoginView {
 
     private static final String TAG = "LoginActivity";
 
@@ -51,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private UMShareAPI mShareAPI;
     /** auth callback interface**/
     private UMAuthListener umAuthListener;
+    private ILoginPresenter mLoginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void init() {
+        mLoginPresenter = new LoginPresenter(this);
         mShareAPI = UMShareAPI.get(this);
 
         umAuthListener = new UMAuthListener() {
