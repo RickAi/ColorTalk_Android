@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.SettingsActivity;
 import navyblue.top.colortalk.ui.ViewSamplesActivity;
-import navyblue.top.colortalk.ui.quote.ListActivity;
+import navyblue.top.colortalk.ui.activities.ListActivity;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;

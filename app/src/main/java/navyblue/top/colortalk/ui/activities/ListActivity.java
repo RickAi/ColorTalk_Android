@@ -1,4 +1,4 @@
-package navyblue.top.colortalk.ui.quote;
+package navyblue.top.colortalk.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +10,11 @@ import android.widget.ListView;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.dummy.DummyContent;
 import navyblue.top.colortalk.ui.base.BaseActivity;
+import navyblue.top.colortalk.ui.quote.ArticleDetailActivity;
+import navyblue.top.colortalk.ui.quote.ArticleDetailFragment;
+import navyblue.top.colortalk.ui.quote.ArticleListFragment;
 import navyblue.top.colortalk.util.LogUtil;
 
-/**
- * Lists all available quotes. This Activity supports a single pane (= smartphones) and a two pane mode (= large screens with >= 600dp width).
- *
- * Created by Andreas Schrade on 14.12.2015.
- */
 public class ListActivity extends BaseActivity implements ArticleListFragment.Callback {
     /**
      * Whether or not the activity is running on a device with a large screen

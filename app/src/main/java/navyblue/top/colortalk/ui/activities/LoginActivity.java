@@ -24,7 +24,6 @@ import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.presenter.abs.ILoginPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.LoginPresenter;
 import navyblue.top.colortalk.mvp.view.abs.ILoginView;
-import navyblue.top.colortalk.util.LogUtil;
 
 public class LoginActivity extends AppCompatActivity
         implements View.OnClickListener, ILoginView {
@@ -89,6 +88,16 @@ public class LoginActivity extends AppCompatActivity
         mShareAPI.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void showProcess() {
+        mLoginProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProcess() {
+        mLoginProgress.setVisibility(View.GONE);
+    }
+
     private void init() {
         mLoginPresenter = new LoginPresenter(this);
         mShareAPI = UMShareAPI.get(this);
@@ -96,8 +105,8 @@ public class LoginActivity extends AppCompatActivity
         umAuthListener = new UMAuthListener() {
             @Override
             public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-                Toast.makeText(LoginActivity.this, "Authorize succeed", Toast.LENGTH_SHORT).show();
-                LogUtil.logI(TAG, data.toString());
+                Toast.makeText(LoginActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
+                gotoMainPage();
             }
 
             @Override
@@ -118,4 +127,11 @@ public class LoginActivity extends AppCompatActivity
         mIvWechatLogin.setOnClickListener(this);
         mIvQqLogin.setOnClickListener(this);
     }
+
+    private void gotoMainPage(){
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
