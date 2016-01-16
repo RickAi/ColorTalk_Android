@@ -10,3 +10,4 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 
 * [andrebts/login-basics](https://github.com/andrebts/login-basics)
 * [社会化Android组件 > 5.0版本集成文档](http://dev.umeng.com/social/android/android-update)
+* [七牛 Android SDK使用指南](http://developer.qiniu.com/docs/v6/sdk/android-sdk.html)
