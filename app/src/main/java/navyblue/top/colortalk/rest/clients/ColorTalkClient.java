@@ -1,7 +1,5 @@
 package navyblue.top.colortalk.rest.clients;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 
 import navyblue.top.colortalk.app.Constants;
@@ -16,12 +14,6 @@ import retrofit.RxJavaCallAdapterFactory;
 public class ColorTalkClient {
 
     final ColorTalkService mColorTalkService;
-
-    final static Gson gson = new GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            .serializeNulls()
-            .create();
-
 
     public ColorTalkClient() {
         OkHttpClient httpClient = new OkHttpClient();

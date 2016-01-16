@@ -5,5 +5,6 @@ package navyblue.top.colortalk.app;
  */
 public class Constants {
 
-    public final static String BASE_URL_COLORTALK = "colortalk.navyblue.top/api";
+    public final static String BASE_URL_COLORTALK = "colortalk.navyblue.top/api/";
+
 }
