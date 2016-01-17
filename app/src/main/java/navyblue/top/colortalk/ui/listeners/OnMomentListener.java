@@ -28,5 +28,5 @@ import navyblue.top.colortalk.mvp.models.Moment;
  * Created by drakeet on 7/1/15.
  */
 public interface OnMomentListener {
-    void onTouch(View v, View meizhiView, View card, Moment moment);
+    void onTouch(View v, View imageView, View card, Moment moment);
 }
