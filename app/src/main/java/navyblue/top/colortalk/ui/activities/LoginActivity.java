@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void gotoMainPage(){
-        Intent intent = new Intent(this, ListActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

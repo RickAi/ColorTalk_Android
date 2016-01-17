@@ -34,7 +34,7 @@
         app:layout_anchor="@id/swipe_refresh_layout"
         app:borderWidth="0dp"
         app:layout_anchorGravity="right|bottom"
-        app:layout_behavior="me.drakeet.meizhi.widget.ScrollAwareFABBehavior"/>
+        app:layout_behavior="navyblue.top.colortalk.ui.widgets.ScrollAwareFABBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

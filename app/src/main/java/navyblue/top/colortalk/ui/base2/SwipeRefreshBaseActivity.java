@@ -12,7 +12,7 @@ import navyblue.top.colortalk.ui.widgets.MultiSwipeRefreshLayout;
 /**
  * Created by drakeet on 1/3/15.
  */
-public abstract class SwipeRefreshBaseActivity extends ToolbarActivity {
+public abstract class SwipeRefreshBaseActivity extends DrawerActivity {
 
     @Bind(R.id.swipe_refresh_layout) public MultiSwipeRefreshLayout mSwipeRefreshLayout;
     private boolean mIsRequestDataRefresh = false;

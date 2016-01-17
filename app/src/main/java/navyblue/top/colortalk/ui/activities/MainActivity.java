@@ -1,22 +1,3 @@
-/*
- * Copyright (C) 2015 Drakeet <drakeet.me@gmail.com>
- *
- * This file is part of Meizhi
- *
- * Meizhi is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Meizhi is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Meizhi.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package navyblue.top.colortalk.ui.activities;
 
 import android.os.Bundle;
@@ -59,7 +40,6 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     protected int provideContentViewId() {
         return R.layout.activity_main;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,12 +213,10 @@ public class MainActivity extends SwipeRefreshBaseActivity {
 //        }
     }
 
-
     @Override
     public void onToolbarClick() {
         mRecyclerView.smoothScrollToPosition(0);
     }
-
 
     @OnClick(R.id.main_fab)
     public void onFab(View v) {
@@ -246,7 +224,6 @@ public class MainActivity extends SwipeRefreshBaseActivity {
 //            startGankActivity(mMomentList.get(0).publishedAt);
         }
     }
-
 
     @Override
     public void requestDataRefresh() {
@@ -290,8 +267,7 @@ public class MainActivity extends SwipeRefreshBaseActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
-
-    RecyclerView.OnScrollListener getOnBottomListener(StaggeredGridLayoutManager layoutManager) {
+    RecyclerView.OnScrollListener getOnBottomListener(final StaggeredGridLayoutManager layoutManager) {
         return new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView rv, int dx, int dy) {
@@ -313,20 +289,17 @@ public class MainActivity extends SwipeRefreshBaseActivity {
         };
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
 //        MobclickAgent.onResume(this);
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
 //        MobclickAgent.onPause(this);
     }
-
 
     @Override
     protected void onDestroy() {
