@@ -7,19 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import navyblue.top.colortalk.R;
-import navyblue.top.colortalk.ui.base.BaseActivity;
+import navyblue.top.colortalk.ui.base.DrawerActivity;
 
 /**
  * This Activity provides several settings. Activity contains {@link PreferenceFragment} as inner class.
  *
  * Created by Andreas Schrade on 14.12.2015.
  */
-public class SettingsActivity extends BaseActivity {
+public class SettingsActivity extends DrawerActivity {
+
+    @Override
+    protected int provideContentViewId() {
+        return R.layout.activity_settings;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
         setupToolbar();
     }
 
@@ -48,11 +52,6 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected int getSelfNavDrawerItem() {
         return R.id.nav_settings;
-    }
-
-    @Override
-    public boolean providesActivityToolbar() {
-        return true;
     }
 
     public static class SettingsFragment extends PreferenceFragment {

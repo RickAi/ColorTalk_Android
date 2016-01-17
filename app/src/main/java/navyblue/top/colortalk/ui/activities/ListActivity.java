@@ -9,22 +9,26 @@ import android.widget.ListView;
 
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.dummy.DummyContent;
-import navyblue.top.colortalk.ui.base.BaseActivity;
+import navyblue.top.colortalk.ui.base.DrawerActivity;
 import navyblue.top.colortalk.ui.quote.ArticleDetailActivity;
 import navyblue.top.colortalk.ui.quote.ArticleDetailFragment;
 import navyblue.top.colortalk.ui.quote.ArticleListFragment;
 import navyblue.top.colortalk.util.LogUtil;
 
-public class ListActivity extends BaseActivity implements ArticleListFragment.Callback {
+public class ListActivity extends DrawerActivity implements ArticleListFragment.Callback {
     /**
      * Whether or not the activity is running on a device with a large screen
      */
     private boolean twoPaneMode;
 
     @Override
+    protected int provideContentViewId() {
+        return R.layout.activity_list;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
 
         setupToolbar();
 
@@ -65,7 +69,7 @@ public class ListActivity extends BaseActivity implements ArticleListFragment.Ca
     }
 
     private void setupDetailFragment() {
-        ArticleDetailFragment fragment =  ArticleDetailFragment.newInstance(DummyContent.ITEMS.get(0).id);
+        ArticleDetailFragment fragment = ArticleDetailFragment.newInstance(DummyContent.ITEMS.get(0).id);
         getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
     }
 
@@ -107,8 +111,4 @@ public class ListActivity extends BaseActivity implements ArticleListFragment.Ca
         return R.id.nav_quotes;
     }
 
-    @Override
-    public boolean providesActivityToolbar() {
-        return true;
-    }
 }

@@ -10,19 +10,23 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import navyblue.top.colortalk.R;
-import navyblue.top.colortalk.ui.base.BaseActivity;
+import navyblue.top.colortalk.ui.base.DrawerActivity;
 
 /**
  * Activity demonstrates some GUI functionalities from the Android support library.
  *
  * Created by Andreas Schrade on 14.12.2015.
  */
-public class ViewSamplesActivity extends BaseActivity {
+public class ViewSamplesActivity extends DrawerActivity {
+
+    @Override
+    protected int provideContentViewId() {
+        return R.layout.activity_samples;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_samples);
         ButterKnife.bind(this);
         setupToolbar();
     }
@@ -59,8 +63,4 @@ public class ViewSamplesActivity extends BaseActivity {
         return R.id.nav_samples;
     }
 
-    @Override
-    public boolean providesActivityToolbar() {
-        return true;
-    }
 }

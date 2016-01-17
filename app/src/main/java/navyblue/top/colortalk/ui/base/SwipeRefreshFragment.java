@@ -1,4 +1,4 @@
-package navyblue.top.colortalk.ui.base2;
+package navyblue.top.colortalk.ui.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

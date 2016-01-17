@@ -17,8 +17,8 @@ import com.bumptech.glide.Glide;
 import butterknife.Bind;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.dummy.DummyContent;
-import navyblue.top.colortalk.ui.base.BaseActivity;
 import navyblue.top.colortalk.ui.base.BaseFragment;
+import navyblue.top.colortalk.ui.base.DrawerActivity;
 
 /**
  * Shows the quote detail page.
@@ -65,10 +65,10 @@ public class ArticleDetailFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflateAndBind(inflater, container, R.layout.fragment_article_detail);
 
-        if (!((BaseActivity) getActivity()).providesActivityToolbar()) {
+//        if (!((BaseActivity) getActivity()).providesActivityToolbar()) {
             // No Toolbar present. Set include_toolbar:
-            ((BaseActivity) getActivity()).setToolbar((Toolbar) rootView.findViewById(R.id.toolbar));
-        }
+        ((DrawerActivity) getActivity()).setToolbar((Toolbar) rootView.findViewById(R.id.toolbar));
+//        }
 
         if (dummyItem != null) {
             loadBackdrop();

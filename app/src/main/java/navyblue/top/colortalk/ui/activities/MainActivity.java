@@ -23,7 +23,7 @@ import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.ui.adapters.MomentAdapter;
-import navyblue.top.colortalk.ui.base2.SwipeRefreshBaseActivity;
+import navyblue.top.colortalk.ui.base.SwipeRefreshBaseActivity;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
 
 public class MainActivity extends SwipeRefreshBaseActivity {

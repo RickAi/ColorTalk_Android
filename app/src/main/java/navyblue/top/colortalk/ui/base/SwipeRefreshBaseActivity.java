@@ -1,4 +1,4 @@
-package navyblue.top.colortalk.ui.base2;
+package navyblue.top.colortalk.ui.base;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -9,9 +9,6 @@ import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.widgets.MultiSwipeRefreshLayout;
 
-/**
- * Created by drakeet on 1/3/15.
- */
 public abstract class SwipeRefreshBaseActivity extends DrawerActivity {
 
     @Bind(R.id.swipe_refresh_layout) public MultiSwipeRefreshLayout mSwipeRefreshLayout;

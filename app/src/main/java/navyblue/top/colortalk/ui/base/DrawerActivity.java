@@ -1,4 +1,4 @@
-package navyblue.top.colortalk.ui.base2;
+package navyblue.top.colortalk.ui.base;
 
 import android.content.Intent;
 import android.os.Bundle;
