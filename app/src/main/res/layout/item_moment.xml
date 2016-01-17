@@ -14,7 +14,7 @@
     android:clickable="true"
     android:orientation="vertical">
 
-    <navyblue.top.colortalk.widgets.RatioImageView
+    <navyblue.top.colortalk.ui.widgets.RatioImageView
         android:id="@+id/iv_moment_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

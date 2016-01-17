@@ -1,5 +1,5 @@
 
-package navyblue.top.colortalk.widgets;
+package navyblue.top.colortalk.ui.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;

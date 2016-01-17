@@ -1,21 +1,3 @@
-/*
- * Copyright (C) 2015 Drakeet <drakeet.me@gmail.com>
- *
- * This file is part of Meizhi
- *
- * Meizhi is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Meizhi is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Meizhi.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 package navyblue.top.colortalk.ui.adapters;
 
@@ -27,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -34,12 +18,9 @@ import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
-import navyblue.top.colortalk.widgets.RatioImageView;
+import navyblue.top.colortalk.ui.widgets.RatioImageView;
 import rx.Observable;
 
-/**
- * Created by drakeet on 6/20/15.
- */
 public class MomentAdapter
         extends RecyclerView.Adapter<MomentAdapter.ViewHolder> {
 
@@ -65,23 +46,18 @@ public class MomentAdapter
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
-//        Moment moment = mList.get(position);
-//        int limit = 48;
-//        String text = moment.desc.length() > limit ? moment.desc.substring(0, limit) +
-//                "..." : moment.desc;
-//        viewHolder.meizhi = moment;
-//        viewHolder.titleView.setText(text);
-//        viewHolder.card.setTag(moment.desc);
-//
-//        Glide.with(mContext)
-//             .load(moment.url)
-//             .centerCrop()
-//             .into(viewHolder.meizhiView)
-//             .getSize((width, height) -> {
-//                 if (!viewHolder.card.isShown()) {
-//                     viewHolder.card.setVisibility(View.VISIBLE);
-//                 }
-//             });
+        Moment moment = mList.get(position);
+        int limit = 48;
+        String text = moment.getText().length() > limit ? moment.getText().substring(0, limit) +
+                "..." : moment.getText();
+        viewHolder.moment = moment;
+        viewHolder.momentText.setText(text);
+        viewHolder.card.setTag(moment.getText());
+
+        Glide.with(mContext)
+             .load(moment.getImage().getImageUrl())
+             .centerCrop()
+             .into(viewHolder.momentImage);
     }
 
 
@@ -98,7 +74,6 @@ public class MomentAdapter
     public void setOnMomentClickListener(OnMomentListener onMomentListener) {
         this.mOnMomentListener = onMomentListener;
     }
-
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
