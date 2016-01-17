@@ -2,8 +2,11 @@ package navyblue.top.colortalk.ui.activities;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.squareup.picasso.Callback;
@@ -45,12 +48,14 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+
         mMomentList = new ArrayList<>();
 //        QueryBuilder query = new QueryBuilder(Meizhi.class);
 //        query.appendOrderDescBy("publishedAt");
 //        query.limit(0, 10);
 //        mMomentList.addAll(App.sDb.query(query));
 
+        setupToolbar();
         setupRecyclerView();
         setupUmeng();
     }
@@ -61,6 +66,22 @@ public class MainActivity extends SwipeRefreshBaseActivity {
         super.onPostCreate(savedInstanceState);
         new Handler().postDelayed(() -> setRequestDataRefresh(true), 358);
         loadData(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sample_actions, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                openDrawer();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -305,5 +326,11 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+    }
+
+    private void setupToolbar() {
+        final ActionBar ab = getActionBarToolbar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 }
