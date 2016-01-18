@@ -62,4 +62,13 @@ public class Moment {
         return image;
     }
 
+    @Override
+    public String toString() {
+        return "Moment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", userId=" + userId +
+                ", image=" + image +
+                '}';
+    }
 }

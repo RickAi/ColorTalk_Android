@@ -22,11 +22,18 @@ import butterknife.OnClick;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
+import navyblue.top.colortalk.rest.models.MomentResponse;
 import navyblue.top.colortalk.ui.adapters.MomentAdapter;
 import navyblue.top.colortalk.ui.base.SwipeRefreshBaseActivity;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
+import navyblue.top.colortalk.util.LogUtil;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends SwipeRefreshBaseActivity {
+
+    public final static String TAG = "MainActivity";
 
     private static final int PRELOAD_SIZE = 6;
 
@@ -120,10 +127,35 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     private void loadData(boolean clean) {
         mLastVideoIndex = 0;
         // @formatter:off
+
+        sColorTalkService.getMoments()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MomentResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(MomentResponse momentResponse) {
+                        List<Moment> moments = momentResponse.getData();
+                        LogUtil.logI(TAG, moments.get(0).toString());
+                        mMomentList.addAll(moments);
+                        mMomentAdapter.notifyDataSetChanged();
+                        setRequestDataRefresh(false);
+                    }
+                });
+
 //        Subscription s = Observable
 //               .zip(sGankIO.getMeizhiData(mPage),
-//                     sGankIO.get休息视频Data(mPage),
-//                     this::createMeizhiDataWith休息视频Desc)
+//                       sGankIO.get休息视频Data(mPage),
+//                       this::createMeizhiDataWith休息视频Desc)
 //               .map(meizhiData -> meizhiData.results)
 //               .flatMap(Observable::from)
 //               .toSortedList((meizhi1, meizhi2) ->

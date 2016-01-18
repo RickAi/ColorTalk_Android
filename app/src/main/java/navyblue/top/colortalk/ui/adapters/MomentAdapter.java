@@ -37,9 +37,10 @@ public class MomentAdapter
     }
 
 
-    @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext())
-                               .inflate(R.layout.item_moment, parent, false);
+                .inflate(R.layout.item_moment, parent, false);
         return new ViewHolder(v);
     }
 
@@ -55,18 +56,25 @@ public class MomentAdapter
         viewHolder.card.setTag(moment.getText());
 
         Glide.with(mContext)
-             .load(moment.getImage().getImageUrl())
-             .centerCrop()
-             .into(viewHolder.momentImage);
+                .load(moment.getImage().getImageUrl())
+                .centerCrop()
+                .into(viewHolder.momentImage)
+                .getSize((width, height) -> {
+                    if (!viewHolder.card.isShown()) {
+                        viewHolder.card.setVisibility(View.VISIBLE);
+                    }
+                });
     }
 
 
-    @Override public void onViewRecycled(ViewHolder holder) {
+    @Override
+    public void onViewRecycled(ViewHolder holder) {
         super.onViewRecycled(holder);
     }
 
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return mList.size();
     }
 
@@ -79,10 +87,10 @@ public class MomentAdapter
 
         @Bind(R.id.iv_moment_image)
         RatioImageView momentImage;
-        @Bind(R.id.tv_moment_text) TextView momentText;
+        @Bind(R.id.tv_moment_text)
+        TextView momentText;
         View card;
         Moment moment;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -94,7 +102,8 @@ public class MomentAdapter
         }
 
 
-        @Override public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
             mOnMomentListener.onTouch(v, momentImage, card, moment);
         }
     }

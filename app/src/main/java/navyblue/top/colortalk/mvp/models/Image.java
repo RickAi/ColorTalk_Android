@@ -53,4 +53,14 @@ public class Image {
     public int getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", userId=" + userId +
+                ", type=" + type +
+                '}';
+    }
 }
