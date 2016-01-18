@@ -2,8 +2,6 @@ package navyblue.top.colortalk.ui.base;
 
 import android.support.v7.app.AppCompatActivity;
 
-import navyblue.top.colortalk.rest.ServiceFactory;
-import navyblue.top.colortalk.rest.services.ColorTalkService;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -11,8 +9,6 @@ import rx.subscriptions.CompositeSubscription;
  * Created by drakeet on 8/9/15.
  */
 public class BaseActivity extends AppCompatActivity {
-
-    public static final ColorTalkService sColorTalkService = ServiceFactory.getColorTalkSingleton();
 
     private CompositeSubscription mCompositeSubscription;
 

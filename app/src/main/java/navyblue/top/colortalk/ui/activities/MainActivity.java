@@ -22,16 +22,14 @@ import butterknife.OnClick;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
-import navyblue.top.colortalk.rest.models.MomentResponse;
+import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
+import navyblue.top.colortalk.mvp.presenter.impl.MainPresenter;
+import navyblue.top.colortalk.mvp.view.abs.IMainView;
 import navyblue.top.colortalk.ui.adapters.MomentAdapter;
 import navyblue.top.colortalk.ui.base.SwipeRefreshBaseActivity;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
-import navyblue.top.colortalk.util.LogUtil;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
-public class MainActivity extends SwipeRefreshBaseActivity {
+public class MainActivity extends SwipeRefreshBaseActivity implements IMainView {
 
     public final static String TAG = "MainActivity";
 
@@ -40,6 +38,7 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     @Bind(R.id.rv_meizhi)
     RecyclerView mRecyclerView;
 
+    private IMainPresenter mMainPresenter;
     private MomentAdapter mMomentAdapter;
     private List<Moment> mMomentList;
     private boolean mIsFirstTimeTouchBottom = true;
@@ -56,6 +55,8 @@ public class MainActivity extends SwipeRefreshBaseActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
+        mMainPresenter = new MainPresenter();
+        mMainPresenter.attachView(this);
         mMomentList = new ArrayList<>();
 //        QueryBuilder query = new QueryBuilder(Meizhi.class);
 //        query.appendOrderDescBy("publishedAt");
@@ -72,7 +73,7 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         new Handler().postDelayed(() -> setRequestDataRefresh(true), 358);
-        loadData(true);
+        mMainPresenter.loadMoments(true);
     }
 
     @Override
@@ -118,61 +119,6 @@ public class MainActivity extends SwipeRefreshBaseActivity {
         mMomentAdapter.setOnMomentClickListener(getOnMomentTouchListener());
     }
 
-
-    /**
-     * 获取服务数据
-     *
-     * @param clean 清除来自数据库缓存或者已有数据。
-     */
-    private void loadData(boolean clean) {
-        mLastVideoIndex = 0;
-        // @formatter:off
-
-        sColorTalkService.getMoments()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<MomentResponse>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(MomentResponse momentResponse) {
-                        List<Moment> moments = momentResponse.getData();
-                        LogUtil.logI(TAG, moments.get(0).toString());
-                        mMomentList.addAll(moments);
-                        mMomentAdapter.notifyDataSetChanged();
-                        setRequestDataRefresh(false);
-                    }
-                });
-
-//        Subscription s = Observable
-//               .zip(sGankIO.getMeizhiData(mPage),
-//                       sGankIO.get休息视频Data(mPage),
-//                       this::createMeizhiDataWith休息视频Desc)
-//               .map(meizhiData -> meizhiData.results)
-//               .flatMap(Observable::from)
-//               .toSortedList((meizhi1, meizhi2) ->
-//                     meizhi2.publishedAt.compareTo(meizhi1.publishedAt))
-//               .doOnNext(this::saveMeizhis)
-//               .observeOn(AndroidSchedulers.mainThread())
-//               .subscribe(meizhis -> {
-//                   if (clean) mMomentList.clear();
-//                   mMomentList.addAll(meizhis);
-//                   mMomentAdapter.notifyDataSetChanged();
-//                   setRequestDataRefresh(false);
-//               }, throwable -> loadError(throwable));
-        // @formatter:on
-//        addSubscription(s);
-    }
-
-
     private void loadError(Throwable throwable) {
 //        throwable.printStackTrace();
 //        setRequestDataRefresh(false);
@@ -210,12 +156,6 @@ public class MainActivity extends SwipeRefreshBaseActivity {
 //        }
 //        return videoDesc;
 //    }
-
-
-    private void loadData() {
-        loadData(/* clean */false);
-    }
-
 
     private OnMomentListener getOnMomentTouchListener() {
         return (v, imageView, card, moment) -> {
@@ -282,7 +222,7 @@ public class MainActivity extends SwipeRefreshBaseActivity {
     public void requestDataRefresh() {
         super.requestDataRefresh();
         mPage = 1;
-        loadData(true);
+        mMainPresenter.loadMoments(true);
     }
 
 //    @Override
@@ -333,7 +273,7 @@ public class MainActivity extends SwipeRefreshBaseActivity {
                     if (!mIsFirstTimeTouchBottom) {
                         mSwipeRefreshLayout.setRefreshing(true);
                         mPage += 1;
-                        loadData();
+                        mMainPresenter.loadMoments(false);
                     } else {
                         mIsFirstTimeTouchBottom = false;
                     }
@@ -364,5 +304,17 @@ public class MainActivity extends SwipeRefreshBaseActivity {
         final ActionBar ab = getActionBarToolbar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void loadNextSuccess(List<Moment> moments) {
+        mMomentList.addAll(moments);
+        mMomentAdapter.notifyDataSetChanged();
+        setRequestDataRefresh(false);
     }
 }
