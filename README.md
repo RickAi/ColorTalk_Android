@@ -6,6 +6,10 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
 * [Android Studio Rename Package](http://stackoverflow.com/questions/16804093/android-studio-rename-package)
 * [CoordinatorLayout与滚动的处理](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html)
+* [Material Design控件使用（四）](https://www.aswifter.com/2015/06/30/Material-Design-Example-4/)
+* [Material Design Patterns 教學 (5) - AppBarLayout](http://blog.30sparks.com/material-design-5-appbarlayout/)
+* [Android Material: Status bar color won't change](http://stackoverflow.com/questions/26496411/android-material-status-bar-color-wont-change)
+* [Adjust layout when soft keyboard is on](http://stackoverflow.com/questions/7300497/adjust-layout-when-soft-keyboard-is-on)
 
 ## Reference projects
 
