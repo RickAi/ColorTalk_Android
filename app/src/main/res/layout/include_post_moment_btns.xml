@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layBtns"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="50dp" android:background="?attr/colorPrimary"
+    android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/post_moments_left"
+    android:paddingRight="@dimen/post_moments_right">
+
+    <LinearLayout
+        android:id="@+id/btnCamera" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/post_moments_gap"
+        android:background="?attr/selectableItemBackground" android:clickable="true" android:gravity="center">
+
+        <ImageView
+            android:layout_width="40dip" android:layout_height="40dip" android:padding="8dip" android:src="@drawable/ic_photo_light"/>
+    </LinearLayout>
+    <!-- new_camera_gray -->
+
+    <LinearLayout
+        android:id="@+id/btnEmotion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/post_moments_gap"
+        android:background="?attr/selectableItemBackground" android:clickable="true" android:gravity="center">
+
+        <ImageView
+            android:layout_width="40dip" android:layout_height="40dip" android:padding="8dip" android:src="@drawable/ic_emoticon_light"/>
+    </LinearLayout>
+    <!-- new_emotion_gray -->
+
+    <LinearLayout
+        android:id="@+id/btnMention" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/post_moments_gap"
+        android:background="?attr/selectableItemBackground" android:clickable="true" android:gravity="center">
+
+        <ImageView
+            android:layout_width="40dip" android:layout_height="40dip" android:alpha="0.95" android:padding="4dip"
+            android:src="@drawable/ic_at_v2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnTrends" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:gravity="center">
+
+        <ImageView
+            android:layout_width="40dip" android:layout_height="40dip" android:alpha="0.95" android:padding="4dip"
+            android:src="@drawable/ic_sharp_v2"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dip" android:layout_height="wrap_content" android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/btnOverflow" android:layout_width="50dip" android:layout_height="40dip"
+        android:background="?attr/selectableItemBackground" android:clickable="true" android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="40dip" android:layout_height="40dip" android:padding="4dip" android:src="@drawable/ic_overflow"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnSend" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:gravity="center">
+
+        <ImageView
+            android:layout_width="40dip" android:layout_height="40dip" android:padding="8dip" android:src="@drawable/ic_send_light"/>
+    </LinearLayout>
+
+</LinearLayout>
