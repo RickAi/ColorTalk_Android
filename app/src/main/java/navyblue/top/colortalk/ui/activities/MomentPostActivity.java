@@ -118,6 +118,7 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
             case R.id.btnTrends:
                 break;
             case R.id.btnSend:
+                mPostMomentPresenter.uploadImage();
                 break;
             default:
                 break;

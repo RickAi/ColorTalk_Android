@@ -4,18 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import navyblue.top.colortalk.mvp.presenter.abs.IPostMomentPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IPostMomentView;
+import navyblue.top.colortalk.util.QiniuUploadUitls;
 
 /**
  * Created by CIR on 16/1/19.
@@ -25,6 +26,7 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
     public static final int IMAGE_REQUEST_GALLERY = 1;
     public static final int IMAGE_REQUEST_CAMERA = 2;
     private Bitmap currentBitmap;
+    private File currentFile;
 
     @Override
     public void pickPicture() {
@@ -38,6 +40,9 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
     @Override
     public void capturePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        currentFile = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(currentFile));
         mActivity.startActivityForResult(intent, IMAGE_REQUEST_CAMERA);
     }
 
@@ -45,9 +50,6 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
     @Override
     public void onActivityForResult(int requestCode, int resultCode, Intent data) {
         InputStream stream = null;
-        if (currentBitmap != null) {
-            currentBitmap.recycle();
-        }
 
         if (requestCode == IMAGE_REQUEST_GALLERY && resultCode == Activity.RESULT_OK) {
             try {
@@ -61,27 +63,63 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == IMAGE_REQUEST_CAMERA && resultCode == Activity.RESULT_OK){
-            currentBitmap = (Bitmap) data.getExtras().get("data");
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            currentBitmap.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
-
-            File destination = new File(Environment.getExternalStorageDirectory(),
-                    System.currentTimeMillis() + ".jpg");
-
-            FileOutputStream fo;
-            try {
-                destination.createNewFile();
-                fo = new FileOutputStream(destination);
-                fo.write(bytes.toByteArray());
-                fo.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+        } else if (requestCode == IMAGE_REQUEST_CAMERA && resultCode == Activity.RESULT_OK) {
+            currentBitmap = decodeSampledBitmapFromFile(currentFile.getAbsolutePath(), 1000, 700);
             mBaseView.showSelectedImage(currentBitmap);
         }
     }
+
+    public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight) {
+        //First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+
+        // Calculate inSampleSize, Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        int inSampleSize = 1;
+        if (height > reqHeight) {
+            inSampleSize = Math.round((float) height / (float) reqHeight);
+        }
+        int expectedWidth = width / inSampleSize;
+
+        if (expectedWidth > reqWidth) {
+            //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
+            inSampleSize = Math.round((float) width / (float) reqWidth);
+        }
+        options.inSampleSize = inSampleSize;
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeFile(path, options);
+    }
+
+    @Override
+    public void uploadImage() {
+        if (currentBitmap == null) {
+            mBaseView.onFailure(new Exception("have not choose a image yet!"));
+            return;
+        }
+
+        QiniuUploadUitls.getInstance().uploadImage(currentBitmap, new QiniuUploadUitls.QiniuUploadUitlsListener() {
+
+            @Override
+            public void onSucess(String fileUrl) {
+                Toast.makeText(mActivity, "success!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onProgress(int progress) {
+
+            }
+
+            @Override
+            public void onError(int errorCode, String msg) {
+                Toast.makeText(mActivity, "failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
