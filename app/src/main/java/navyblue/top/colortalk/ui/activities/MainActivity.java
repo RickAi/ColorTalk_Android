@@ -1,5 +1,6 @@
 package navyblue.top.colortalk.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -213,9 +214,8 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
 
     @OnClick(R.id.main_fab)
     public void onFab(View v) {
-        if (mMomentList != null && mMomentList.size() > 0) {
-//            startGankActivity(mMomentList.get(0).publishedAt);
-        }
+        Intent intent = new Intent(this, MomentPostActivity.class);
+        startActivity(intent);
     }
 
     @Override

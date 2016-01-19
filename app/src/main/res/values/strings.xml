@@ -31,4 +31,9 @@
 
     <string name="moment_load_fail">加载失败，请重试</string>
     <string name="retry">重试</string>
+
+    <string-array name="post_moment_images">
+        <item>相册</item>
+        <item>拍照</item>
+    </string-array>
 </resources>

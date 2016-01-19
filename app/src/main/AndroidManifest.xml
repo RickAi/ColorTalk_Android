@@ -39,6 +39,8 @@
         </activity>
         <activity android:name=".ui.activities.MainActivity">
         </activity>
+        <activity android:name=".ui.activities.MomentPostActivity">
+        </activity>
         <activity
             android:name=".ui.quote.ArticleDetailActivity"
             android:label=""

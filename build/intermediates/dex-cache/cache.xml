@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jar="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.4/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/pre-dexed/debug/classes-59fc2a394db0cbec91c6f1b655196fe91850491d.jar" />
+        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
+        <dex dex="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/pre-dexed/debug/classes-ee1db1d6e5ba424fd01e424ac6985a536d290f24.jar" />
     </item>
     <item
-        jar="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jar="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/core/0.8.5.3/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/pre-dexed/debug/classes-8929f7d56c50cb8c82e1dc5fc2f66541adfe7f8a.jar" />
+        sha1="8d006e18bdac0fb0b0d4ec46a3a241b24d957e4e">
+        <dex dex="/Users/CIR/AndroidStudioProjects/ColorTalk/app/build/intermediates/pre-dexed/debug/classes-c05d9c74c8f8a4b191926538b48e50a3a47c9d54.jar" />
     </item>
 
 </items>
