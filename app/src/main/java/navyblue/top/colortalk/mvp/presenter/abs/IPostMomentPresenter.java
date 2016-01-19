@@ -13,6 +13,6 @@ public interface IPostMomentPresenter extends IBasePresenter<IPostMomentView> {
     public void capturePicture();
     public void onActivityForResult(int requestCode, int resultCode, Intent data);
 
-    public void uploadImage();
+    public void postMoment(int userID, String text);
 
 }

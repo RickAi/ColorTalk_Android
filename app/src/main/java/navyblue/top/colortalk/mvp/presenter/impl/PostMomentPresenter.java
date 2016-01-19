@@ -14,9 +14,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IPostMomentPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IPostMomentView;
 import navyblue.top.colortalk.util.QiniuUploadUitls;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by CIR on 16/1/19.
@@ -97,7 +101,8 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
     }
 
     @Override
-    public void uploadImage() {
+    public void postMoment(final int userID, final String text) {
+        // upload the image to qiniu server first
         if (currentBitmap == null) {
             mBaseView.onFailure(new Exception("have not choose a image yet!"));
             return;
@@ -107,7 +112,8 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
 
             @Override
             public void onSucess(String fileUrl) {
-                Toast.makeText(mActivity, "success!", Toast.LENGTH_SHORT).show();
+                // then, record the moment file to our server
+                createMoment(userID, getImageName(fileUrl), text);
             }
 
             @Override
@@ -120,6 +126,34 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
                 Toast.makeText(mActivity, "failed!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String getImageName(String url) {
+        int start = url.lastIndexOf('/') + 1;
+        int end = url.length();
+        return url.substring(start, end);
+    }
+
+    private void createMoment(int userID, String imageName, String text) {
+        sColorTalkService.createMoment(String.valueOf(userID), imageName, text)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Moment>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Moment moment) {
+                        Toast.makeText(mActivity, "success!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }

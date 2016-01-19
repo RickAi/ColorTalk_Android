@@ -7,6 +7,7 @@ import navyblue.top.colortalk.rest.models.ImageResponse;
 import navyblue.top.colortalk.rest.models.MomentResponse;
 import navyblue.top.colortalk.rest.models.UserResponse;
 import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import rx.Observable;
@@ -28,6 +29,7 @@ public interface ColorTalkService {
                                 @Field("password") String password, @Field("is_third") String is_third,
                                 @Field("gender") String gender, @Field("birthday") String birthday);
     // ['user_id', 'image_name', 'text']
+    @FormUrlEncoded
     @POST("moments")
     Observable<Moment> createMoment(@Field("user_id") String user_id, @Field("image_name") String image_name,
                                     @Field("text") String text);
