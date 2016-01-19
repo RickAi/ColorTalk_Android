@@ -1,10 +1,13 @@
 package navyblue.top.colortalk.ui.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
@@ -34,6 +37,12 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
     LinearLayout mBtnTrends;
     @Bind(R.id.btnSend)
     LinearLayout mBtnSend;
+    @Bind(R.id.rv_selected_image)
+    ImageView mRvSelectedImage;
+    @Bind(R.id.btnOverflow)
+    LinearLayout mBtnOverflow;
+    @Bind(R.id.layBtns)
+    LinearLayout mLayBtns;
 
     private IPostMomentPresenter mPostMomentPresenter;
 
@@ -79,22 +88,26 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // choose a existing photo
                         if (which == 0) {
-                            String[] images = null;
-//                            PicturePickFragment.launch(APublishFragment.this, 9, images, 3333);
-                        }
-                        // take a photo
-                        else {
-
+                            mPostMomentPresenter.pickPicture();
+                        } else {
+                            mPostMomentPresenter.capturePicture();
                         }
                     }
                 }).show();
     }
 
     @Override
+    public void showSelectedImage(Bitmap bitmap) {
+        mRvSelectedImage.setVisibility(View.VISIBLE);
+        mRvSelectedImage.setScaleType(ImageView.ScaleType.FIT_XY);
+        mRvSelectedImage.setAdjustViewBounds(true);
+        mRvSelectedImage.setImageBitmap(bitmap);
+    }
+
+    @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnCamera:
                 chooseImageDialog();
                 break;
@@ -109,6 +122,11 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mPostMomentPresenter.onActivityForResult(requestCode, resultCode, data);
     }
 
     @Override

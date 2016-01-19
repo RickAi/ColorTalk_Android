@@ -1,6 +1,8 @@
 
 package navyblue.top.colortalk.mvp.presenter.impl;
 
+import android.app.Activity;
+
 import navyblue.top.colortalk.mvp.presenter.abs.IBasePresenter;
 import navyblue.top.colortalk.mvp.view.abs.IBaseView;
 import navyblue.top.colortalk.rest.ServiceFactory;
@@ -21,6 +23,7 @@ public class BasePresenter<T extends IBaseView> implements IBasePresenter<T> {
 
     protected T mBaseView;
     public CompositeSubscription mCompositeSubscription;
+    protected Activity mActivity;
 //    public DataManager mDataManager;
 
 
@@ -28,6 +31,7 @@ public class BasePresenter<T extends IBaseView> implements IBasePresenter<T> {
     public void attachView(T mvpView) {
         this.mBaseView = mvpView;
         this.mCompositeSubscription = new CompositeSubscription();
+        this.mActivity = (Activity) mvpView;
 //        this.mDataManager = DataManager.getInstance();
     }
 
@@ -36,6 +40,7 @@ public class BasePresenter<T extends IBaseView> implements IBasePresenter<T> {
         this.mBaseView = null;
         this.mCompositeSubscription.unsubscribe();
         this.mCompositeSubscription = null;
+        this.mActivity = null;
 //        this.mDataManager = null;
     }
 

@@ -10,6 +10,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Material Design Patterns 教學 (5) - AppBarLayout](http://blog.30sparks.com/material-design-5-appbarlayout/)
 * [Android Material: Status bar color won't change](http://stackoverflow.com/questions/26496411/android-material-status-bar-color-wont-change)
 * [Adjust layout when soft keyboard is on](http://stackoverflow.com/questions/7300497/adjust-layout-when-soft-keyboard-is-on)
+* [Android Gradle plugin 0.7.0: “duplicate files during packaging of APK”](http://stackoverflow.com/questions/20673625/android-gradle-plugin-0-7-0-duplicate-files-during-packaging-of-apk)
 
 ## Reference projects
 
