@@ -58,7 +58,6 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
 
         mPostMomentPresenter = new PostMomentPresenter();
         mPostMomentPresenter.attachView(this);
-        setupToolbar();
         setUpListeners();
     }
 

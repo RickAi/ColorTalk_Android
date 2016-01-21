@@ -17,10 +17,10 @@
   ~ along with Meizhi.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey_1000"
+                android:background="@color/grey_800"
                 android:fitsSystemWindows="true">
 
     <ImageView
@@ -31,4 +31,4 @@
 
     <include layout="@layout/view_toolbar"/>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

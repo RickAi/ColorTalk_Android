@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.umeng.socialize.PlatformConfig;
 
+import navyblue.top.colortalk.util.ToastUtils;
+
 /**
  * Created by CIR on 16/1/12.
  */
@@ -24,7 +26,7 @@ public class ColorTalkApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-
+        ToastUtils.register(this);
     }
 
 }

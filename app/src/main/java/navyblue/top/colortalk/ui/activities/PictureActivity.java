@@ -2,7 +2,6 @@ package navyblue.top.colortalk.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
@@ -10,9 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -36,11 +32,6 @@ public class PictureActivity extends ToolbarActivity implements IPictureView {
     PhotoViewAttacher mPhotoViewAttacher;
     String mImageUrl, mImageTitle;
     IPicturePresenter mPicturePresenter;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient mClient;
 
     @Override
     protected int provideContentViewId() {
@@ -83,9 +74,6 @@ public class PictureActivity extends ToolbarActivity implements IPictureView {
         setAppBarAlpha(0.7f);
         setTitle(mImageTitle);
         setupPhotoAttacher();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void setupPhotoAttacher() {
@@ -106,12 +94,9 @@ public class PictureActivity extends ToolbarActivity implements IPictureView {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-//            case R.id.action_share:
-//                RxMeizhi.saveImageAndGetPathObservable(this, mImageUrl, mImageTitle)
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribe(uri -> ShareUtils.shareImage(this, uri, "分享妹纸到..."),
-//                                error -> ToastUtils.showLong(error.getMessage()));
-//                return true;
+            case R.id.action_share:
+                mPicturePresenter.shareImage(mImageUrl, mImageTitle);
+                return true;
             case R.id.action_save:
                 mPicturePresenter.saveImageToGallery(mImageUrl);
                 return true;
@@ -163,43 +148,4 @@ public class PictureActivity extends ToolbarActivity implements IPictureView {
         return true;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mClient.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Picture Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://navyblue.top.colortalk.ui.activities/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(mClient, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Picture Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://navyblue.top.colortalk.ui.activities/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(mClient, viewAction);
-        mClient.disconnect();
-    }
 }

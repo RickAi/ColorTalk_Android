@@ -29,8 +29,19 @@ import rx.schedulers.Schedulers;
 public class PicturePresenter extends BasePresenter<IPictureView> implements IPicturePresenter {
 
     @Override
-    public void shareImage() {
+    public void shareImage(String imageUrl, String imageDesc) {
+        saveImageAndGetPathObservable(mActivity, imageUrl, imageDesc)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(uri -> shareImage(mActivity, uri, "share the image to..."),
+                        error -> ToastUtils.showLong(error.getMessage()));
+    }
 
+    private void shareImage(Context context, Uri uri, String title) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.setType("image/jpeg");
+        context.startActivity(Intent.createChooser(shareIntent, title));
     }
 
     @Override
