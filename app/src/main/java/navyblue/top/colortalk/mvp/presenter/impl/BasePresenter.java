@@ -7,6 +7,7 @@ import navyblue.top.colortalk.mvp.presenter.abs.IBasePresenter;
 import navyblue.top.colortalk.mvp.view.abs.IBaseView;
 import navyblue.top.colortalk.rest.ServiceFactory;
 import navyblue.top.colortalk.rest.services.ColorTalkService;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -61,6 +62,14 @@ public class BasePresenter<T extends IBaseView> implements IBasePresenter<T> {
             super("Please call Presenter.attachView(MvpView) before" +
                     " requesting data to the Presenter");
         }
+    }
+
+    public void addSubscription(Subscription s) {
+        if (this.mCompositeSubscription == null) {
+            this.mCompositeSubscription = new CompositeSubscription();
+        }
+
+        this.mCompositeSubscription.add(s);
     }
 
 }
