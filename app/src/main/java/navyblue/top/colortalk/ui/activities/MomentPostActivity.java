@@ -136,4 +136,9 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
         super.onDestroy();
         ButterKnife.unbind(this);
     }
+
+    @Override
+    public boolean canBack() {
+        return true;
+    }
 }

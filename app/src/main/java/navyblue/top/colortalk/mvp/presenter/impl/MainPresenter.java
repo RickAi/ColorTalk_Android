@@ -1,11 +1,18 @@
 package navyblue.top.colortalk.mvp.presenter.impl;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.view.View;
+
 import java.util.List;
 
+import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IMainView;
 import navyblue.top.colortalk.rest.models.MomentResponse;
+import navyblue.top.colortalk.ui.activities.PictureActivity;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -42,5 +49,27 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
                         mBaseView.loadNextSuccess(moments);
                     }
                 });
+    }
+
+    @Override
+    public void showPicture(Moment moment, View imageView) {
+        Image image = moment.getImage();
+        Intent intent = PictureActivity.newIntent(mActivity, image.getImageUrl(),
+                moment.getText());
+        ActivityOptionsCompat optionsCompat
+                = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                mActivity, imageView, PictureActivity.TRANSIT_PIC);
+        try {
+            ActivityCompat.startActivity(mActivity, intent,
+                    optionsCompat.toBundle());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            mActivity.startActivity(intent);
+        }
+    }
+
+    @Override
+    public void showMoment(Moment moment) {
+
     }
 }

@@ -1,5 +1,8 @@
 package navyblue.top.colortalk.mvp.presenter.abs;
 
+import android.view.View;
+
+import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.view.abs.IMainView;
 
 /**
@@ -8,4 +11,6 @@ import navyblue.top.colortalk.mvp.view.abs.IMainView;
 
 public interface IMainPresenter extends IBasePresenter<IMainView> {
     public void loadMoments(boolean clean);
+    public void showPicture(Moment moment, View imageView);
+    public void showMoment(Moment moment);
 }

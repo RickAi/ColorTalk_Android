@@ -170,7 +170,7 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
                     @Override
                     public void onSuccess() {
                         mMomentBeTouched = false;
-//                        startPictureActivity(moment, imageView);
+                        mMainPresenter.showPicture(moment, imageView);
                     }
 
                     @Override
@@ -179,6 +179,7 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
                     }
                 });
             } else if (v == card) {
+
 //                startGankActivity(meizhi.publishedAt);
             }
         };
@@ -189,22 +190,6 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
 //        Intent intent = new Intent(this, GankActivity.class);
 //        intent.putExtra(GankActivity.EXTRA_GANK_DATE, publishedAt);
 //        startActivity(intent);
-    }
-
-
-    private void startPictureActivity(Moment meizhi, View transitView) {
-//        Intent intent = PictureActivity.newIntent(MainActivity.this, meizhi.url,
-//                meizhi.desc);
-//        ActivityOptionsCompat optionsCompat
-//                = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                MainActivity.this, transitView, PictureActivity.TRANSIT_PIC);
-//        try {
-//            ActivityCompat.startActivity(MainActivity.this, intent,
-//                    optionsCompat.toBundle());
-//        } catch (IllegalArgumentException e) {
-//            e.printStackTrace();
-//            startActivity(intent);
-//        }
     }
 
     @Override

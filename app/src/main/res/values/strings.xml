@@ -31,6 +31,9 @@
 
     <string name="moment_load_fail">加载失败，请重试</string>
     <string name="retry">重试</string>
+    <string name="ask_saving_picture">保存到手机?</string>
+    <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
+    <string name="action_share">分享</string>
 
     <string-array name="post_moment_images">
         <item>相册</item>
