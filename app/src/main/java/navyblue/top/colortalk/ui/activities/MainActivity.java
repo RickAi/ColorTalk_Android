@@ -14,7 +14,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -179,17 +178,20 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
                     }
                 });
             } else if (v == card) {
+                Picasso.with(this).load(image.getImageUrl()).fetch(new Callback() {
 
-//                startGankActivity(meizhi.publishedAt);
+                    @Override
+                    public void onSuccess() {
+                        mMainPresenter.showMoment(moment, imageView);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mMomentBeTouched = false;
+                    }
+                });
             }
         };
-    }
-
-
-    private void startGankActivity(Date publishedAt) {
-//        Intent intent = new Intent(this, GankActivity.class);
-//        intent.putExtra(GankActivity.EXTRA_GANK_DATE, publishedAt);
-//        startActivity(intent);
     }
 
     @Override

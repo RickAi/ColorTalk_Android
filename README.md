@@ -22,6 +22,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Android Gradle plugin 0.7.0: “duplicate files during packaging of APK”](http://stackoverflow.com/questions/20673625/android-gradle-plugin-0-7-0-duplicate-files-during-packaging-of-apk)
 * [Use Camera Activity for Thumbnail and Full Size Image](http://blog-emildesign.rhcloud.com/?p=590)
 * [retrofit @POST parameters are sent via GET](http://stackoverflow.com/questions/28892105/retrofit-post-parameters-are-sent-via-get)
+* [Getting a fatal error in git for multiple stage entries](http://stackoverflow.com/questions/27330446/getting-a-fatal-error-in-git-for-multiple-stage-entries)
 
 ## Reference projects
 

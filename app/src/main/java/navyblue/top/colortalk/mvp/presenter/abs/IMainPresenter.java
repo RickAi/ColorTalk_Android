@@ -12,5 +12,5 @@ import navyblue.top.colortalk.mvp.view.abs.IMainView;
 public interface IMainPresenter extends IBasePresenter<IMainView> {
     public void loadMoments(boolean clean);
     public void showPicture(Moment moment, View imageView);
-    public void showMoment(Moment moment);
+    public void showMoment(Moment moment, View imageView);
 }

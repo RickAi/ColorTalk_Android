@@ -22,5 +22,8 @@
     <dimen name="post_moments_left">16dp</dimen>
     <dimen name="post_moments_right">16dp</dimen>
     <dimen name="post_moments_gap">16dp</dimen>
+    <dimen name="moment_footer_padding">48dp</dimen>
+    <dimen name="moment_header_height">224dp</dimen>
+
 
 </resources>

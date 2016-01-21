@@ -47,6 +47,8 @@
         </activity>
         <activity android:name=".ui.activities.PictureActivity">
         </activity>
+        <activity android:name=".ui.activities.MomentActivity">
+        </activity>
         <activity
             android:name=".ui.quote.ArticleDetailActivity"
             android:label=""

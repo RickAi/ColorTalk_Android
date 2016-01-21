@@ -12,6 +12,7 @@ import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IMainView;
 import navyblue.top.colortalk.rest.models.MomentResponse;
+import navyblue.top.colortalk.ui.activities.MomentActivity;
 import navyblue.top.colortalk.ui.activities.PictureActivity;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -69,7 +70,19 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
     }
 
     @Override
-    public void showMoment(Moment moment) {
-
+    public void showMoment(Moment moment, View imageView) {
+        Image image = moment.getImage();
+        Intent intent = new Intent(mActivity, MomentActivity.class);
+        intent.putExtra(MomentActivity.EXTRA_IMAGE_URL, image.getImageUrl());
+        ActivityOptionsCompat optionsCompat
+                = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                mActivity, imageView, MomentActivity.TRANSIT_PIC);
+        try {
+            ActivityCompat.startActivity(mActivity, intent,
+                    optionsCompat.toBundle());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            mActivity.startActivity(intent);
+        }
     }
 }
