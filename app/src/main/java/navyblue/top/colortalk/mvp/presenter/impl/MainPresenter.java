@@ -15,6 +15,7 @@ import navyblue.top.colortalk.rest.models.MomentResponse;
 import navyblue.top.colortalk.ui.activities.MomentActivity;
 import navyblue.top.colortalk.ui.activities.PictureActivity;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -30,7 +31,7 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
         //        mLastVideoIndex = 0;
         // @formatter:off
 
-        sColorTalkService.getMoments()
+        Subscription s = sColorTalkService.getMoments()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<MomentResponse>() {
@@ -50,6 +51,7 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
                         mBaseView.loadNextSuccess(moments);
                     }
                 });
+        addSubscription(s);
     }
 
     @Override

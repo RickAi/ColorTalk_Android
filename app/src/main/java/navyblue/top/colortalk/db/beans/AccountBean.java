@@ -34,12 +34,18 @@ public class AccountBean extends Model {
     @Column(name = "uid")
     public int uid;
 
+    public AccountBean(){}
+
     public AccountBean(User user){
         this.userID = user.getId();
         this.email = user.getEmail();
         this.birthday = user.getBirthday();
         this.gender = user.getGender();
         this.isThird = user.getIsThird();
+    }
+
+    public int getUserID(){
+        return userID;
     }
 
     public static void cacheAccountInfo(User user){
@@ -59,6 +65,11 @@ public class AccountBean extends Model {
         return (accounts.size() == 1);
     }
 
+    public static AccountBean getCachedAccount(){
+        List<AccountBean> accounts = getAllAccounts();
+        return accounts.get(0);
+    }
+
     public static long getAccountID(){
         if(existAccountCache()){
             List<AccountBean> accounts = getAllAccounts();
@@ -71,4 +82,16 @@ public class AccountBean extends Model {
         return new Select().from(AccountBean.class).execute();
     }
 
+    @Override
+    public String toString() {
+        return "AccountBean{" +
+                "userID=" + userID +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                ", birthday='" + birthday + '\'' +
+                ", isThird=" + isThird +
+                ", uid=" + uid +
+                '}';
+    }
 }

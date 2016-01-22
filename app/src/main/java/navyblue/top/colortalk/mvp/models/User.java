@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
  * Created by CIR on 16/1/16.
  */
 public class User {
+    public static final int THIRD_TRUE = 1;
+    public static final int THIRD_FALSE = 0;
+
     /**
      * id : 1
      * name : 超级管理员
@@ -29,7 +32,6 @@ public class User {
     private String birthday;
     @SerializedName("uid")
     private String uid;
-
 
     public void setId(int id) {
         this.id = id;
@@ -55,8 +57,16 @@ public class User {
         this.birthday = birthday;
     }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public String getName() {
@@ -77,5 +87,18 @@ public class User {
 
     public String getBirthday() {
         return birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", isThird=" + isThird +
+                ", gender=" + gender +
+                ", birthday='" + birthday + '\'' +
+                ", uid='" + uid + '\'' +
+                '}';
     }
 }

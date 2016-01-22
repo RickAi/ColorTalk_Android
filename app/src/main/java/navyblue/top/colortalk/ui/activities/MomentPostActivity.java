@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.app.ColorTalkApp;
 import navyblue.top.colortalk.mvp.presenter.abs.IPostMomentPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.PostMomentPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IPostMomentView;
@@ -118,7 +119,7 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
                 break;
             case R.id.btnSend:
                 String text = mEditContent.getText().toString();
-                mPostMomentPresenter.postMoment(1, text);
+                mPostMomentPresenter.postMoment(ColorTalkApp.getLoginedUserID(), text);
                 break;
             default:
                 break;

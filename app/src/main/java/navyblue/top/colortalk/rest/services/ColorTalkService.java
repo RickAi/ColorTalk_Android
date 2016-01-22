@@ -24,10 +24,23 @@ public interface ColorTalkService {
     Observable<UserResponse> getUsers();
 
     // ['name', 'email', 'password', 'is_third', 'gender', 'birthday'];
-    @POST("users")
+    @FormUrlEncoded
+    @POST("register")
     Observable<User> createUser(@Field("name") String name, @Field("email") String email,
                                 @Field("password") String password, @Field("is_third") String is_third,
                                 @Field("gender") String gender, @Field("birthday") String birthday);
+
+    // local ['email', 'password', 'is_third']
+    @FormUrlEncoded
+    @POST("login")
+    Observable<User> login( @Field("email") String email, @Field("password") String password,
+                            @Field("is_third") String is_third);
+
+    // third ['uid', 'is_third']
+    @FormUrlEncoded
+    @POST("login")
+    Observable<User> login( @Field("uid") String uid, @Field("is_third") int is_third);
+
     // ['user_id', 'image_name', 'text']
     @FormUrlEncoded
     @POST("moments")

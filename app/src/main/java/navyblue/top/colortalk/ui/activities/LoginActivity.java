@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.socks.library.KLog;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -64,6 +63,7 @@ public class LoginActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         init();
+        initUmeng();
         setListeners();
     }
 
@@ -99,16 +99,28 @@ public class LoginActivity extends AppCompatActivity
         mLoginProgress.setVisibility(View.GONE);
     }
 
+    @Override
+    public void gotoMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void init() {
-        mLoginPresenter = new LoginPresenter(this);
+        mLoginPresenter = new LoginPresenter();
+        mLoginPresenter.attachView(this);
+
+        mLoginPresenter.loginCheck();
+    }
+
+    private void initUmeng() {
         mShareAPI = UMShareAPI.get(this);
 
         umAuthListener = new UMAuthListener() {
             @Override
             public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
                 Toast.makeText(LoginActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
-                KLog.d(TAG, data.toString());
-//                gotoMainPage();
+                mLoginPresenter.thirdLogin(data.get("uid"));
             }
 
             @Override
@@ -128,12 +140,6 @@ public class LoginActivity extends AppCompatActivity
         mIvDoubanLogin.setOnClickListener(this);
         mIvWechatLogin.setOnClickListener(this);
         mIvQqLogin.setOnClickListener(this);
-    }
-
-    private void gotoMainPage(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     @Override

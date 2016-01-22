@@ -5,12 +5,15 @@ import android.app.Application;
 import com.activeandroid.ActiveAndroid;
 import com.umeng.socialize.PlatformConfig;
 
+import navyblue.top.colortalk.db.beans.AccountBean;
 import navyblue.top.colortalk.util.ToastUtils;
 
 /**
  * Created by CIR on 16/1/12.
  */
 public class ColorTalkApp extends Application {
+
+    public static AccountBean sAccount = null;
 
     //各个平台的配置，建议放在全局Application或者程序入口
     {
@@ -29,6 +32,13 @@ public class ColorTalkApp extends Application {
 
         ActiveAndroid.initialize(this);
         ToastUtils.register(this);
+    }
+
+    public static int getLoginedUserID(){
+        if(sAccount == null){
+            return 0;
+        }
+        return sAccount.getUserID();
     }
 
 }
