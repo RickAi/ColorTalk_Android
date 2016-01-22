@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.socks.library.KLog;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -106,7 +107,8 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
                 Toast.makeText(LoginActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
-                gotoMainPage();
+                KLog.d(TAG, data.toString());
+//                gotoMainPage();
             }
 
             @Override

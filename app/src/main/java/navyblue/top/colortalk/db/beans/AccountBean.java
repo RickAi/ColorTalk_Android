@@ -15,6 +15,9 @@ import navyblue.top.colortalk.mvp.models.User;
  */
 @Table(name = "account")
 public class AccountBean extends Model {
+
+    private final static int NO_ACCOUNT = 0;
+
     @Expose
     @Column(name = "user_id")
     public int userID;
@@ -28,6 +31,8 @@ public class AccountBean extends Model {
     public String birthday;
     @Column(name = "is_third")
     public int isThird;
+    @Column(name = "uid")
+    public int uid;
 
     public AccountBean(User user){
         this.userID = user.getId();
@@ -44,7 +49,7 @@ public class AccountBean extends Model {
 
     public static void logoutAccount(){
         long id = getAccountID();
-        if(id != 0){
+        if(id != NO_ACCOUNT){
             AccountBean.delete(AccountBean.class, id);
         }
     }
@@ -59,7 +64,7 @@ public class AccountBean extends Model {
             List<AccountBean> accounts = getAllAccounts();
             return accounts.get(0).getId();
         }
-        return 0;
+        return NO_ACCOUNT;
     }
 
     public static List<AccountBean> getAllAccounts(){

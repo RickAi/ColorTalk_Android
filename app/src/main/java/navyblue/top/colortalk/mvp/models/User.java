@@ -27,6 +27,9 @@ public class User {
     private int gender;
     @SerializedName("birthday")
     private String birthday;
+    @SerializedName("uid")
+    private String uid;
+
 
     public void setId(int id) {
         this.id = id;
