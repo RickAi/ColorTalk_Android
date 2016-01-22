@@ -2,6 +2,7 @@ package navyblue.top.colortalk.app;
 
 import android.app.Application;
 
+import com.activeandroid.ActiveAndroid;
 import com.umeng.socialize.PlatformConfig;
 
 import navyblue.top.colortalk.util.ToastUtils;
@@ -26,6 +27,7 @@ public class ColorTalkApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        ActiveAndroid.initialize(this);
         ToastUtils.register(this);
     }
 
