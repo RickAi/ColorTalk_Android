@@ -1,6 +1,5 @@
 package navyblue.top.colortalk.ui.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -17,14 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.MainPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IMainView;
-import navyblue.top.colortalk.ui.activities.MomentPostActivity;
 import navyblue.top.colortalk.ui.adapters.MomentAdapter;
 import navyblue.top.colortalk.ui.base.SwipeRefreshFragment;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
@@ -59,7 +56,7 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mMainPresenter = new MainPresenter();
-        mMainPresenter.attachView(this);
+        mMainPresenter.attachView(this, mActivity);
         mMomentList = new ArrayList<>();
         setupRecyclerView();
 
@@ -72,12 +69,6 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
         super.requestDataRefresh();
         mPage = 1;
         mMainPresenter.loadMoments(true);
-    }
-
-    @OnClick(R.id.main_fab)
-    public void onFab(View v) {
-        Intent intent = new Intent(mActivity, MomentPostActivity.class);
-        startActivity(intent);
     }
 
     @Override

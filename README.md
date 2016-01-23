@@ -29,6 +29,9 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Unable to execute dex: Multiple dex files define 错误该如何解决？](http://support.rongcloud.cn/kb/MTcw)
 * [Android SDK 开发指南](http://www.rongcloud.cn/docs/android.html)
 * [A diagram of the Android Activity / Fragment lifecycle](https://github.com/xxv/android-lifecycle)
+* [AppBarLayout with FrameLayout container as scrolling content doesn't work](http://stackoverflow.com/questions/30533444/appbarlayout-with-framelayout-container-as-scrolling-content-doesnt-work)
+* [Android SupportLib - FrameLayout in CoordinatorLayout with AppBarLayout consuming entire screen-height](http://stackoverflow.com/questions/32427084/android-supportlib-framelayout-in-coordinatorlayout-with-appbarlayout-consumin)
+* [Floating Action Button not showing fully inside a fragment](http://stackoverflow.com/questions/30731615/floating-action-button-not-showing-fully-inside-a-fragment)
 
 ## Reference projects
 

@@ -2,11 +2,13 @@ package navyblue.top.colortalk.ui.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.SettingsActivity;
@@ -27,10 +29,18 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     private DrawerLayout drawerLayout;
 
+    FloatingActionButton fab;
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setupNavDrawer();
+        setUpFAB();
+    }
+
+    private void setUpFAB() {
+        fab = (FloatingActionButton) findViewById(R.id.main_fab);
+        fab.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -47,6 +57,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
         if (navigationView != null) {
             setupDrawerSelectListener(navigationView);
             setSelectedItem(navigationView);
+            navigationView.setCheckedItem(R.id.nav_quotes);
         }
 
         logD(TAG, "navigation drawer setup finished");
@@ -97,10 +108,13 @@ public abstract class DrawerActivity extends ToolbarActivity {
      * @param item the selected navigation item
      */
     private void goToNavDrawerItem(int item) {
+        fab.setVisibility(View.GONE);
+
         switch (item) {
             case R.id.nav_quotes:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, MainFragment.newInstance()).commit();
+                fab.setVisibility(View.VISIBLE);
                 break;
             case R.id.nav_samples:
                 getSupportFragmentManager().beginTransaction()

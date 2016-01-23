@@ -1,15 +1,18 @@
 package navyblue.top.colortalk.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.ui.base.DrawerActivity;
@@ -36,6 +39,12 @@ public class MainActivity extends DrawerActivity {
 
         setupToolbar();
         setupUmeng();
+    }
+
+    @OnClick(R.id.main_fab)
+    public void onFab(View v) {
+        Intent intent = new Intent(this, MomentPostActivity.class);
+        startActivity(intent);
     }
 
 
