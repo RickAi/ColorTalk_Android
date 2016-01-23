@@ -1,5 +1,6 @@
 package navyblue.top.colortalk.ui.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMomentPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.MomentPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IMomentView;
@@ -23,6 +25,7 @@ import navyblue.top.colortalk.ui.base.ToolbarActivity;
 public class MomentActivity extends ToolbarActivity implements IMomentView {
     public static final String TRANSIT_PIC = "picture";
     public static final String EXTRA_IMAGE_URL = "image_url";
+    public static final String EXTRA_USER_ID = "user_id";
 
     @Bind(R.id.rv_comments)
     RecyclerView mRvComments;
@@ -31,6 +34,7 @@ public class MomentActivity extends ToolbarActivity implements IMomentView {
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbar;
     IMomentPresenter mMomentPresenter;
+    Moment moment;
 
     @Override
     protected int provideContentViewId() {
@@ -52,14 +56,22 @@ public class MomentActivity extends ToolbarActivity implements IMomentView {
         initParams();
         ViewCompat.setTransitionName(mIvMomentImage, TRANSIT_PIC);
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE_URL)).into(mIvMomentImage);
+        initMoment();
         initListeners();
+    }
+
+    private void initMoment() {
+        Intent intent = getIntent();
+        moment = new Moment();
+        moment.setUserId(intent.getIntExtra(EXTRA_USER_ID, 0));
     }
 
     private void initListeners() {
         mIvMomentImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int userID = moment.getUserId();
+                mMomentPresenter.startPrivateChat(userID, "temp");
             }
         });
     }

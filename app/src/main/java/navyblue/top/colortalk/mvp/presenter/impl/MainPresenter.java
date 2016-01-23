@@ -76,6 +76,8 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
         Image image = moment.getImage();
         Intent intent = new Intent(mActivity, MomentActivity.class);
         intent.putExtra(MomentActivity.EXTRA_IMAGE_URL, image.getImageUrl());
+        intent.putExtra(MomentActivity.EXTRA_USER_ID, moment.getUserId());
+
         ActivityOptionsCompat optionsCompat
                 = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 mActivity, imageView, MomentActivity.TRANSIT_PIC);

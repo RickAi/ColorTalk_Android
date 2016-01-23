@@ -73,7 +73,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
         if (AccountBean.existAccountCache()) {
             AccountBean account = AccountBean.getCachedAccount();
             ColorTalkApp.sAccount = account;
-            initRongConnection();
+            initRongConnection(false);
             KLog.d("loginCheck", ColorTalkApp.sAccount.toString());
         }
     }
@@ -98,12 +98,12 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
                         String token = rongToken.getToken();
                         AccountBean.cacheAccountInfo(user, token);
                         ColorTalkApp.sAccount = new AccountBean(user, token);
-                        initRongConnection();
+                        initRongConnection(true);
                     }
                 });
     }
 
-    private void initRongConnection() {
+    private void initRongConnection(final boolean isLocal) {
         String token = ColorTalkApp.getRongToken();
         if (mActivity.getApplicationInfo().packageName.equals(ColorTalkApp.getCurProcessName(mActivity.getApplicationContext()))) {
             /**
@@ -126,6 +126,9 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
                 @Override
                 public void onSuccess(String userid) {
                     KLog.d("LoginActivity", "--onSuccess" + userid);
+                    if(isLocal){
+                        mBaseView.hideProcess();
+                    }
                     mBaseView.gotoMainActivity();
                 }
 

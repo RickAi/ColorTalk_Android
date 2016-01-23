@@ -27,6 +27,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [融云 SDK 2.0 集成详解 – Android Studio](http://blog.rongcloud.cn/?p=392)
 * [彻底解决Android 应用方法数不能超过65K的问题](http://blog.csdn.net/yuanzeyao/article/details/41809423)
 * [Unable to execute dex: Multiple dex files define 错误该如何解决？](http://support.rongcloud.cn/kb/MTcw)
+* [Android SDK 开发指南](http://www.rongcloud.cn/docs/android.html)
 
 ## Reference projects
 

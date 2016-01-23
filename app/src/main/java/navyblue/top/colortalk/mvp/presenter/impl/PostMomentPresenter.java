@@ -152,6 +152,7 @@ public class PostMomentPresenter extends BasePresenter<IPostMomentView> implemen
                     @Override
                     public void onNext(Moment moment) {
                         Toast.makeText(mActivity, "success!", Toast.LENGTH_SHORT).show();
+                        mActivity.finish();
                     }
                 });
     }
