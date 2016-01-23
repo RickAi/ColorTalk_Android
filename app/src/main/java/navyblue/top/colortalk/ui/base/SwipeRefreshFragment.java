@@ -1,13 +1,12 @@
 package navyblue.top.colortalk.ui.base;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.widgets.MultiSwipeRefreshLayout;
 
-public class SwipeRefreshFragment extends Fragment {
+public class SwipeRefreshFragment extends BaseFragment {
 
     public MultiSwipeRefreshLayout mSwipeRefreshLayout;
 

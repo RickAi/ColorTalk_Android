@@ -53,7 +53,7 @@ public class ListActivity extends DrawerActivity implements ArticleListFragment.
         if (twoPaneMode) {
             // Show the quote detail information by replacing the DetailFragment via transaction.
             ArticleDetailFragment fragment = ArticleDetailFragment.newInstance(id);
-            getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
         } else {
             // Start the detail activity in single pane mode.
             Intent detailIntent = new Intent(this, ArticleDetailActivity.class);
@@ -70,7 +70,7 @@ public class ListActivity extends DrawerActivity implements ArticleListFragment.
 
     private void setupDetailFragment() {
         ArticleDetailFragment fragment = ArticleDetailFragment.newInstance(DummyContent.ITEMS.get(0).id);
-        getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
     }
 
     /**

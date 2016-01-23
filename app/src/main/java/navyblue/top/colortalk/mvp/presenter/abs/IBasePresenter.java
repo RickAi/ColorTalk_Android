@@ -1,6 +1,8 @@
 
 package navyblue.top.colortalk.mvp.presenter.abs;
 
+import android.app.Activity;
+
 import navyblue.top.colortalk.mvp.view.abs.IBaseView;
 
 /**
@@ -17,6 +19,8 @@ import navyblue.top.colortalk.mvp.view.abs.IBaseView;
 public interface IBasePresenter<V extends IBaseView> {
 
     void attachView(V baseView);
+
+    void attachView(V baseView, Activity activity);
 
     void detachView();
 

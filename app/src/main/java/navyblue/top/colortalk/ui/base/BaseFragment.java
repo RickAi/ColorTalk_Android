@@ -1,6 +1,8 @@
 package navyblue.top.colortalk.ui.base;
 
-import android.app.Fragment;
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,16 @@ import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
  */
 public class BaseFragment extends Fragment {
 
+    protected Activity mActivity;
+
     private static final String TAG = makeLogTag(BaseFragment.class);
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mActivity = getActivity();
+    }
 
     /**
      * Inflates the layout and binds the view via ButterKnife.

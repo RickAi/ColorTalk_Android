@@ -4,17 +4,22 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.ui.base.DrawerActivity;
+import navyblue.top.colortalk.ui.fragments.MainFragment;
 
 public class MainActivity extends DrawerActivity {
 
     public final static String TAG = "MainActivity";
+    @Bind(R.id.fragment_container)
+    FrameLayout mFragmentContainer;
 
     @Override
     protected int provideContentViewId() {
@@ -26,10 +31,8 @@ public class MainActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-//        QueryBuilder query = new QueryBuilder(Meizhi.class);
-//        query.appendOrderDescBy("publishedAt");
-//        query.limit(0, 10);
-//        mMomentList.addAll(App.sDb.query(query));
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, MainFragment.newInstance()).commit();
 
         setupToolbar();
         setupUmeng();

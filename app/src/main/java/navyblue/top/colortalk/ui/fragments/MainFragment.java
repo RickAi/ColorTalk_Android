@@ -1,9 +1,8 @@
 package navyblue.top.colortalk.ui.fragments;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -35,7 +34,6 @@ import navyblue.top.colortalk.ui.listeners.OnMomentListener;
  */
 public class MainFragment extends SwipeRefreshFragment implements IMainView {
 
-    Activity mActivity;
     @Bind(R.id.rv_meizhi)
     RecyclerView mRecyclerView;
     private IMainPresenter mMainPresenter;
@@ -46,18 +44,53 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     private boolean mMomentBeTouched;
     private static final int PRELOAD_SIZE = 6;
 
+    public static MainFragment newInstance() {
+        return new MainFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflateAndBind(inflater, container, R.layout.fragment_main);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this);
         mMomentList = new ArrayList<>();
-
         setupRecyclerView();
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        new Handler().postDelayed(() -> setRefreshing(true), 358);
+        requestDataRefresh();
     }
 
+    @Override
+    public void requestDataRefresh() {
+        super.requestDataRefresh();
+        mPage = 1;
+        mMainPresenter.loadMoments(true);
+    }
+
+    @OnClick(R.id.main_fab)
+    public void onFab(View v) {
+        Intent intent = new Intent(mActivity, MomentPostActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void loadNextSuccess(List<Moment> moments) {
+        mMomentList.addAll(moments);
+        mMomentAdapter.notifyDataSetChanged();
+        setRefreshing(false);
+    }
+
+    @Override
+    public void onFailure(Throwable e) {
+
+    }
     private void setupRecyclerView() {
         final StaggeredGridLayoutManager layoutManager
                 = new StaggeredGridLayoutManager(2,
@@ -68,7 +101,6 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
         mRecyclerView.addOnScrollListener(getOnBottomListener(layoutManager));
         mMomentAdapter.setOnMomentClickListener(getOnMomentTouchListener());
     }
-
 
     RecyclerView.OnScrollListener getOnBottomListener(final StaggeredGridLayoutManager layoutManager) {
         return new RecyclerView.OnScrollListener() {
@@ -127,42 +159,5 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
                 });
             }
         };
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mActivity = (Activity) context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mActivity = null;
-    }
-
-    @Override
-    public void requestDataRefresh() {
-        super.requestDataRefresh();
-        mPage = 1;
-        mMainPresenter.loadMoments(true);
-    }
-
-    @OnClick(R.id.main_fab)
-    public void onFab(View v) {
-        Intent intent = new Intent(mActivity, MomentPostActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void loadNextSuccess(List<Moment> moments) {
-        mMomentList.addAll(moments);
-        mMomentAdapter.notifyDataSetChanged();
-        setRefreshing(false);
-    }
-
-    @Override
-    public void onFailure(Throwable e) {
-
     }
 }

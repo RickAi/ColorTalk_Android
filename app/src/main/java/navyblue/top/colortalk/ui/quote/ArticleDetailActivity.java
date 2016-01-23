@@ -27,7 +27,7 @@ public class ArticleDetailActivity extends DrawerActivity {
         }
 
         ArticleDetailFragment fragment =  ArticleDetailFragment.newInstance(getIntent().getStringExtra(ArticleDetailFragment.ARG_ITEM_ID));
-        getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
     }
 
 }

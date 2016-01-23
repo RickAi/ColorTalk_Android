@@ -32,8 +32,17 @@ public class BasePresenter<T extends IBaseView> implements IBasePresenter<T> {
     public void attachView(T mvpView) {
         this.mBaseView = mvpView;
         this.mCompositeSubscription = new CompositeSubscription();
-        this.mActivity = (Activity) mvpView;
+        if(mvpView instanceof  Activity){
+            this.mActivity = (Activity) mvpView;
+        }
 //        this.mDataManager = DataManager.getInstance();
+    }
+
+    @Override
+    public void attachView(T baseView, Activity activity) {
+        this.mBaseView = baseView;
+        this.mCompositeSubscription = new CompositeSubscription();
+        mActivity = activity;
     }
 
     @Override
