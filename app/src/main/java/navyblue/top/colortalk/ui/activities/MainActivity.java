@@ -1,49 +1,20 @@
 package navyblue.top.colortalk.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import navyblue.top.colortalk.R;
-import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
-import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
-import navyblue.top.colortalk.mvp.presenter.impl.MainPresenter;
-import navyblue.top.colortalk.mvp.view.abs.IMainView;
-import navyblue.top.colortalk.ui.adapters.MomentAdapter;
-import navyblue.top.colortalk.ui.base.SwipeRefreshBaseActivity;
-import navyblue.top.colortalk.ui.listeners.OnMomentListener;
+import navyblue.top.colortalk.ui.base.DrawerActivity;
 
-public class MainActivity extends SwipeRefreshBaseActivity implements IMainView {
+public class MainActivity extends DrawerActivity {
 
     public final static String TAG = "MainActivity";
-
-    private static final int PRELOAD_SIZE = 6;
-
-    @Bind(R.id.rv_meizhi)
-    RecyclerView mRecyclerView;
-
-    private IMainPresenter mMainPresenter;
-    private MomentAdapter mMomentAdapter;
-    private List<Moment> mMomentList;
-    private boolean mIsFirstTimeTouchBottom = true;
-    private int mPage = 1;
-    private boolean mMomentBeTouched;
 
     @Override
     protected int provideContentViewId() {
@@ -55,26 +26,22 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-        mMainPresenter = new MainPresenter();
-        mMainPresenter.attachView(this);
-        mMomentList = new ArrayList<>();
 //        QueryBuilder query = new QueryBuilder(Meizhi.class);
 //        query.appendOrderDescBy("publishedAt");
 //        query.limit(0, 10);
 //        mMomentList.addAll(App.sDb.query(query));
 
         setupToolbar();
-        setupRecyclerView();
         setupUmeng();
     }
 
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        new Handler().postDelayed(() -> setRequestDataRefresh(true), 358);
-        mMainPresenter.loadMoments(true);
-    }
+//    @Override
+//    protected void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        new Handler().postDelayed(() -> setRequestDataRefresh(true), 358);
+//        mMainPresenter.loadMoments(true);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,26 +64,6 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
 //        UmengUpdateAgent.update(this);
 //        UmengUpdateAgent.setDeltaUpdate(false);
 //        UmengUpdateAgent.setUpdateOnlyWifi(false);
-    }
-
-
-    private void setupRecyclerView() {
-        final StaggeredGridLayoutManager layoutManager
-                = new StaggeredGridLayoutManager(2,
-                StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mMomentAdapter = new MomentAdapter(this, mMomentList);
-        mRecyclerView.setAdapter(mMomentAdapter);
-//        new Once(this).show("tip_guide_6", () -> {
-//            Snackbar.make(mRecyclerView, getString(R.string.tip_guide),
-//                    Snackbar.LENGTH_INDEFINITE)
-//                    .setAction(R.string.i_know, v -> {
-//                    })
-//                    .show();
-//        });
-
-        mRecyclerView.addOnScrollListener(getOnBottomListener(layoutManager));
-        mMomentAdapter.setOnMomentClickListener(getOnMomentTouchListener());
     }
 
     private void loadError(Throwable throwable) {
@@ -157,59 +104,9 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
 //        return videoDesc;
 //    }
 
-    private OnMomentListener getOnMomentTouchListener() {
-        return (v, imageView, card, moment) -> {
-            Image image = moment.getImage();
-
-            if (moment == null) return;
-            if (v == imageView && !mMomentBeTouched) {
-                mMomentBeTouched = true;
-                Picasso.with(this).load(image.getImageUrl()).fetch(new Callback() {
-
-                    @Override
-                    public void onSuccess() {
-                        mMomentBeTouched = false;
-                        mMainPresenter.showPicture(moment, imageView);
-                    }
-
-                    @Override
-                    public void onError() {
-                        mMomentBeTouched = false;
-                    }
-                });
-            } else if (v == card) {
-                Picasso.with(this).load(image.getImageUrl()).fetch(new Callback() {
-
-                    @Override
-                    public void onSuccess() {
-                        mMainPresenter.showMoment(moment, imageView);
-                    }
-
-                    @Override
-                    public void onError() {
-                        mMomentBeTouched = false;
-                    }
-                });
-            }
-        };
-    }
-
     @Override
     public void onToolbarClick() {
-        mRecyclerView.smoothScrollToPosition(0);
-    }
-
-    @OnClick(R.id.main_fab)
-    public void onFab(View v) {
-        Intent intent = new Intent(this, MomentPostActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void requestDataRefresh() {
-        super.requestDataRefresh();
-        mPage = 1;
-        mMainPresenter.loadMoments(true);
+//        mRecyclerView.smoothScrollToPosition(0);
     }
 
 //    @Override
@@ -247,28 +144,6 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
 //        return super.onOptionsItemSelected(item);
 //    }
 
-    RecyclerView.OnScrollListener getOnBottomListener(final StaggeredGridLayoutManager layoutManager) {
-        return new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView rv, int dx, int dy) {
-                boolean isBottom =
-                        layoutManager.findLastCompletelyVisibleItemPositions(
-                                new int[2])[1] >=
-                                mMomentAdapter.getItemCount() -
-                                        PRELOAD_SIZE;
-                if (!mSwipeRefreshLayout.isRefreshing() && isBottom) {
-                    if (!mIsFirstTimeTouchBottom) {
-                        mSwipeRefreshLayout.setRefreshing(true);
-                        mPage += 1;
-                        mMainPresenter.loadMoments(false);
-                    } else {
-                        mIsFirstTimeTouchBottom = false;
-                    }
-                }
-            }
-        };
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -293,15 +168,4 @@ public class MainActivity extends SwipeRefreshBaseActivity implements IMainView 
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public void onFailure(Throwable e) {
-
-    }
-
-    @Override
-    public void loadNextSuccess(List<Moment> moments) {
-        mMomentList.addAll(moments);
-        mMomentAdapter.notifyDataSetChanged();
-        setRequestDataRefresh(false);
-    }
 }
