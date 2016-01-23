@@ -5,6 +5,7 @@ import android.app.Application;
 import com.activeandroid.ActiveAndroid;
 import com.umeng.socialize.PlatformConfig;
 
+import io.rong.imkit.RongIM;
 import navyblue.top.colortalk.db.beans.AccountBean;
 import navyblue.top.colortalk.util.ToastUtils;
 
@@ -30,6 +31,7 @@ public class ColorTalkApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        RongIM.init(this);
         ActiveAndroid.initialize(this);
         ToastUtils.register(this);
     }

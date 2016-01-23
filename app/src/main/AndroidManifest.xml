@@ -2,9 +2,9 @@
 <manifest package="navyblue.top.colortalk"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -48,6 +48,20 @@
         <activity android:name=".ui.activities.PictureActivity">
         </activity>
         <activity android:name=".ui.activities.MomentActivity">
+        </activity>
+        <activity android:name=".ui.activities.ChatActivity">
+        </activity>
+        <activity android:name=".ui.activities.ConversationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="navyblue.top.colortalk"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.quote.ArticleDetailActivity"
@@ -96,15 +110,15 @@
 
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="colortalk.db" />
+            android:value="colortalk.db"/>
 
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1" />
+            android:value="1"/>
 
         <meta-data
             android:name="AA_MODELS"
-            android:value="navyblue.top.colortalk.db.beans.AccountBean" />
+            android:value="navyblue.top.colortalk.db.beans.AccountBean"/>
 
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->

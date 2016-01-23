@@ -23,6 +23,8 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Use Camera Activity for Thumbnail and Full Size Image](http://blog-emildesign.rhcloud.com/?p=590)
 * [retrofit @POST parameters are sent via GET](http://stackoverflow.com/questions/28892105/retrofit-post-parameters-are-sent-via-get)
 * [Getting a fatal error in git for multiple stage entries](http://stackoverflow.com/questions/27330446/getting-a-fatal-error-in-git-for-multiple-stage-entries)
+* [Android Studio如何import module（针对非gradle）](http://blog.csdn.net/hyr83960944/article/details/39957467)
+* [融云 SDK 2.0 集成详解 – Android Studio](http://blog.rongcloud.cn/?p=392)
 
 ## Reference projects
 
