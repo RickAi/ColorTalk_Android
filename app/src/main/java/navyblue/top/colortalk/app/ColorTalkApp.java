@@ -1,6 +1,8 @@
 package navyblue.top.colortalk.app;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 
 import com.activeandroid.ActiveAndroid;
 import com.umeng.socialize.PlatformConfig;
@@ -31,16 +33,43 @@ public class ColorTalkApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        RongIM.init(this);
+        if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext())) ||
+                "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
+            RongIM.init(this);
+        }
         ActiveAndroid.initialize(this);
         ToastUtils.register(this);
     }
 
-    public static int getLoginedUserID(){
+    public static int getUserID(){
         if(sAccount == null){
             return 0;
         }
         return sAccount.getUserID();
+    }
+
+    public static String getRongToken(){
+        if(sAccount == null){
+            return "";
+        }
+        return sAccount.token;
+    }
+
+    public static String getCurProcessName(Context context) {
+
+        int pid = android.os.Process.myPid();
+
+        ActivityManager activityManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
+                .getRunningAppProcesses()) {
+
+            if (appProcess.pid == pid) {
+                return appProcess.processName;
+            }
+        }
+        return null;
     }
 
 }

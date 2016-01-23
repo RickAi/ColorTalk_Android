@@ -25,6 +25,8 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Getting a fatal error in git for multiple stage entries](http://stackoverflow.com/questions/27330446/getting-a-fatal-error-in-git-for-multiple-stage-entries)
 * [Android Studio如何import module（针对非gradle）](http://blog.csdn.net/hyr83960944/article/details/39957467)
 * [融云 SDK 2.0 集成详解 – Android Studio](http://blog.rongcloud.cn/?p=392)
+* [彻底解决Android 应用方法数不能超过65K的问题](http://blog.csdn.net/yuanzeyao/article/details/41809423)
+* [Unable to execute dex: Multiple dex files define 错误该如何解决？](http://support.rongcloud.cn/kb/MTcw)
 
 ## Reference projects
 

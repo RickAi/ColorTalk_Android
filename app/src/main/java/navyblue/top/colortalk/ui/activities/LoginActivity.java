@@ -140,6 +140,17 @@ public class LoginActivity extends AppCompatActivity
         mIvDoubanLogin.setOnClickListener(this);
         mIvWechatLogin.setOnClickListener(this);
         mIvQqLogin.setOnClickListener(this);
+        mTvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = mTvEmail.getText().toString();
+                String password = mEtPassword.getText().toString();
+                // TODO: 邮箱密码为空预先提示
+                // TODO: 密码错误或超时提示
+
+                mLoginPresenter.localLogin(email, password);
+            }
+        });
     }
 
     @Override

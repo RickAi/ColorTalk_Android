@@ -119,7 +119,7 @@ public class MomentPostActivity extends ToolbarActivity implements IPostMomentVi
                 break;
             case R.id.btnSend:
                 String text = mEditContent.getText().toString();
-                mPostMomentPresenter.postMoment(ColorTalkApp.getLoginedUserID(), text);
+                mPostMomentPresenter.postMoment(ColorTalkApp.getUserID(), text);
                 break;
             default:
                 break;

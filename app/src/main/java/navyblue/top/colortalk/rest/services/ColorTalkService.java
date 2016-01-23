@@ -2,6 +2,7 @@ package navyblue.top.colortalk.rest.services;
 
 
 import navyblue.top.colortalk.mvp.models.Moment;
+import navyblue.top.colortalk.mvp.models.RongToken;
 import navyblue.top.colortalk.mvp.models.User;
 import navyblue.top.colortalk.rest.models.ImageResponse;
 import navyblue.top.colortalk.rest.models.MomentResponse;
@@ -34,7 +35,7 @@ public interface ColorTalkService {
     @FormUrlEncoded
     @POST("login")
     Observable<User> login( @Field("email") String email, @Field("password") String password,
-                            @Field("is_third") String is_third);
+                            @Field("is_third") int is_third);
 
     // third ['uid', 'is_third']
     @FormUrlEncoded
@@ -46,5 +47,10 @@ public interface ColorTalkService {
     @POST("moments")
     Observable<Moment> createMoment(@Field("user_id") String user_id, @Field("image_name") String image_name,
                                     @Field("text") String text);
+
+    @FormUrlEncoded
+    @POST("token/rong")
+    Observable<RongToken> getRongToken(@Field("user_id") String user_id, @Field("name") String name,
+                                    @Field("url") String url);
 
 }

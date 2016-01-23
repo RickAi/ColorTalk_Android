@@ -33,23 +33,26 @@ public class AccountBean extends Model {
     public int isThird;
     @Column(name = "uid")
     public int uid;
+    @Column(name = "token")
+    public String token;
 
     public AccountBean(){}
 
-    public AccountBean(User user){
+    public AccountBean(User user, String token){
         this.userID = user.getId();
         this.email = user.getEmail();
         this.birthday = user.getBirthday();
         this.gender = user.getGender();
         this.isThird = user.getIsThird();
+        this.token = token;
     }
 
     public int getUserID(){
         return userID;
     }
 
-    public static void cacheAccountInfo(User user){
-        AccountBean accountBean = new AccountBean(user);
+    public static void cacheAccountInfo(User user, String token){
+        AccountBean accountBean = new AccountBean(user, token);
         accountBean.save();
     }
 

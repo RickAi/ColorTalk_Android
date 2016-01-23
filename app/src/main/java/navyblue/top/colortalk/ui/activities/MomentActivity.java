@@ -7,6 +7,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -51,6 +52,16 @@ public class MomentActivity extends ToolbarActivity implements IMomentView {
         initParams();
         ViewCompat.setTransitionName(mIvMomentImage, TRANSIT_PIC);
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE_URL)).into(mIvMomentImage);
+        initListeners();
+    }
+
+    private void initListeners() {
+        mIvMomentImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void initParams() {
