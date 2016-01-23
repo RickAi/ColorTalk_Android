@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -13,10 +12,10 @@
         <include layout="@layout/view_toolbar"/>
 
         <fragment
-            android:id="@+id/fragment_conversation"
-            android:name="io.rong.imkit.fragment.ConversationFragment"
+            android:id="@+id/fragment_conversation_list"
+            android:name="io.rong.imkit.fragment.ConversationListFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

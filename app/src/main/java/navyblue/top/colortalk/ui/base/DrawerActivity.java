@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.SettingsActivity;
 import navyblue.top.colortalk.ui.ViewSamplesActivity;
-import navyblue.top.colortalk.ui.activities.ListActivity;
+import navyblue.top.colortalk.ui.activities.ConversationListActivity;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
@@ -99,7 +99,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
     private void goToNavDrawerItem(int item) {
         switch (item) {
             case R.id.nav_quotes:
-                startActivity(new Intent(this, ListActivity.class));
+                startActivity(new Intent(this, ConversationListActivity.class));
                 finish();
                 break;
             case R.id.nav_samples:
