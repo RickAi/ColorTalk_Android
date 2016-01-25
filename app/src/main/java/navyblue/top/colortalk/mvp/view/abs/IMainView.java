@@ -9,6 +9,7 @@ import navyblue.top.colortalk.mvp.models.Moment;
  */
 public interface IMainView extends IBaseView {
 
-    public void loadNextSuccess(List<Moment> moments);
+    void loadNextSuccess(List<Moment> moments);
+    void loadNextFailed();
 
 }

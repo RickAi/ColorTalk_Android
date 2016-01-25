@@ -12,7 +12,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * 在线聊天
 
 ## Reference documents
-* [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
+1. [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
 * [Android Studio Rename Package](http://stackoverflow.com/questions/16804093/android-studio-rename-package)
 * [CoordinatorLayout与滚动的处理](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html)
 * [Material Design控件使用（四）](https://www.aswifter.com/2015/06/30/Material-Design-Example-4/)
@@ -32,10 +32,12 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [AppBarLayout with FrameLayout container as scrolling content doesn't work](http://stackoverflow.com/questions/30533444/appbarlayout-with-framelayout-container-as-scrolling-content-doesnt-work)
 * [Android SupportLib - FrameLayout in CoordinatorLayout with AppBarLayout consuming entire screen-height](http://stackoverflow.com/questions/32427084/android-supportlib-framelayout-in-coordinatorlayout-with-appbarlayout-consumin)
 * [Floating Action Button not showing fully inside a fragment](http://stackoverflow.com/questions/30731615/floating-action-button-not-showing-fully-inside-a-fragment)
+* [Retrofit and GET using parameters](http://stackoverflow.com/questions/24100372/retrofit-and-get-using-parameters)
+* [Fragment lifecycle](http://developer.android.com/reference/android/app/Fragment.html#Lifecycle)
 
 ## Reference projects
 
-* [andrebts/login-basics](https://github.com/andrebts/login-basics)
+1. [andrebts/login-basics](https://github.com/andrebts/login-basics)
 * [社会化Android组件 > 5.0版本集成文档](http://dev.umeng.com/social/android/android-update)
 * [七牛 Android SDK使用指南](http://developer.qiniu.com/docs/v6/sdk/android-sdk.html)
 * [wangdan/AisenWeiBo](https://github.com/wangdan/AisenWeiBo)

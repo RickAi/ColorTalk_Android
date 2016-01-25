@@ -55,8 +55,14 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this, mActivity);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         mMomentList = new ArrayList<>();
         setupRecyclerView();
 
@@ -65,17 +71,40 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        mMomentList.clear();
+        mMomentAdapter.notifyDataSetChanged();
+        mPage = 1;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mMainPresenter.detachView();
+        mMainPresenter = null;
+    }
+
+    @Override
     public void requestDataRefresh() {
         super.requestDataRefresh();
-        mPage = 1;
-        mMainPresenter.loadMoments(true);
+        mMainPresenter.loadMoments(true, mPage);
     }
 
     @Override
     public void loadNextSuccess(List<Moment> moments) {
+        mPage++;
         mMomentList.addAll(moments);
         mMomentAdapter.notifyDataSetChanged();
         setRefreshing(false);
+    }
+
+    @Override
+    public void loadNextFailed() {
+        setRefreshing(false);
+        // TODO: 换个更合理的提示
+//        Toast.makeText(mActivity, "No more moments for now!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -105,8 +134,7 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
                 if (!mSwipeRefreshLayout.isRefreshing() && isBottom) {
                     if (!mIsFirstTimeTouchBottom) {
                         mSwipeRefreshLayout.setRefreshing(true);
-                        mPage += 1;
-                        mMainPresenter.loadMoments(false);
+                        mMainPresenter.loadMoments(false, mPage);
                     } else {
                         mIsFirstTimeTouchBottom = false;
                     }

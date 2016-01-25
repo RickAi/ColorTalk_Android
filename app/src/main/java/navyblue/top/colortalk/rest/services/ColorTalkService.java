@@ -11,6 +11,7 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Query;
 import rx.Observable;
 
 /**
@@ -18,7 +19,7 @@ import rx.Observable;
  */
 public interface ColorTalkService {
     @GET("moments")
-    Observable<MomentResponse> getMoments();
+    Observable<MomentResponse> getMoments(@Query("page") int page);
     @GET("images")
     Observable<ImageResponse> getImages();
     @GET("users")

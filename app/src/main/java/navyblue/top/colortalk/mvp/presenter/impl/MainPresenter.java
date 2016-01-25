@@ -27,11 +27,11 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
 
 
     @Override
-    public void loadMoments(boolean clean) {
+    public void loadMoments(boolean clean, int page) {
         //        mLastVideoIndex = 0;
         // @formatter:off
 
-        Subscription s = sColorTalkService.getMoments()
+        Subscription s = sColorTalkService.getMoments(page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<MomentResponse>() {
@@ -48,7 +48,11 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
                     @Override
                     public void onNext(MomentResponse momentResponse) {
                         List<Moment> moments = momentResponse.getData();
-                        mBaseView.loadNextSuccess(moments);
+                        if(moments.isEmpty()){
+                            mBaseView.loadNextFailed();
+                        } else {
+                            mBaseView.loadNextSuccess(moments);
+                        }
                     }
                 });
         addSubscription(s);
