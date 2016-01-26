@@ -9,10 +9,6 @@ import com.squareup.picasso.Picasso;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.widgets.scrollview.loader.MediaLoader;
 
-/**
- * Author: Alexey Nevinsky
- * Date: 06.12.15 1:38
- */
 public class PicassoImageLoader implements MediaLoader {
 
     private String url;

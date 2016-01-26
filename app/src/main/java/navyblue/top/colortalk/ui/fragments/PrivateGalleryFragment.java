@@ -72,7 +72,7 @@ public class PrivateGalleryFragment extends BaseFragment implements IGalleryView
         endLoading();
         FragmentActivity fragmentActivity = (FragmentActivity) mActivity;
         mScrollGalleryView
-                .setThumbnailSize(100)
+                .setThumbnailSize(300)
                 .setZoom(true)
                 .setFragmentManager(fragmentActivity.getSupportFragmentManager())
                 .addMedia(images);

@@ -10,19 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.veinhorn.scrollgalleryview.*;
-import com.veinhorn.scrollgalleryview.loader.MediaLoader;
-
+import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.ui.widgets.scrollview.loader.MediaLoader;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-/**
- * Created by veinhorn on 29.8.15.
- */
 public class ImageFragment extends Fragment {
 
     private MediaInfo mMediaInfo;
 
-    private com.veinhorn.scrollgalleryview.HackyViewPager viewPager;
+    private HackyViewPager viewPager;
     private ImageView backgroundImage;
     private PhotoViewAttacher photoViewAttacher;
 
@@ -33,9 +29,9 @@ public class ImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View rootView = inflater.inflate(com.veinhorn.scrollgalleryview.R.layout.image_fragment, container, false);
-        backgroundImage = (ImageView) rootView.findViewById(com.veinhorn.scrollgalleryview.R.id.backgroundImage);
-        viewPager = (com.veinhorn.scrollgalleryview.HackyViewPager) getActivity().findViewById(R.id.viewPager);
+        View rootView = inflater.inflate(R.layout.image_fragment, container, false);
+        backgroundImage = (ImageView) rootView.findViewById(R.id.backgroundImage);
+        viewPager = (HackyViewPager) getActivity().findViewById(R.id.viewPager);
 
         if (savedInstanceState != null) {
             boolean isLocked = savedInstanceState.getBoolean(Constants.IS_LOCKED, false);

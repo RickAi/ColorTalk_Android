@@ -5,13 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.veinhorn.scrollgalleryview.*;
-
 import java.util.List;
 
-/**
- * Created by veinhorn on 29.8.15.
- */
 public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     private List<MediaInfo> mListOfMedia;
@@ -36,7 +31,7 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
     }
 
     private Fragment loadImageFragment(MediaInfo mediaInfo) {
-        com.veinhorn.scrollgalleryview.ImageFragment fragment = new com.veinhorn.scrollgalleryview.ImageFragment();
+        ImageFragment fragment = new ImageFragment();
         fragment.setMediaInfo(mediaInfo);
         Bundle bundle = new Bundle();
         bundle.putBoolean(Constants.ZOOM, isZoom);

@@ -26,9 +26,6 @@ import java.util.List;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.widgets.scrollview.loader.MediaLoader;
 
-/**
- * Created by veinhorn on 6.8.15.
- */
 public class ScrollGalleryView extends LinearLayout {
     private FragmentManager fragmentManager;
     private Context context;

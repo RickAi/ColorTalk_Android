@@ -11,4 +11,5 @@
         android:background="#000000"
         android:scaleType="center"
         android:src="@drawable/placeholder_image" />
+
 </LinearLayout>
