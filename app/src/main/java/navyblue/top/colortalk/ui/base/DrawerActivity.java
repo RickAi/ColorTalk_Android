@@ -1,6 +1,5 @@
 package navyblue.top.colortalk.ui.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,9 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import navyblue.top.colortalk.R;
-import navyblue.top.colortalk.ui.SettingsActivity;
 import navyblue.top.colortalk.ui.fragments.ChatListFragment;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
+import navyblue.top.colortalk.ui.fragments.PrivateGalleryFragment;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
@@ -121,7 +120,8 @@ public abstract class DrawerActivity extends ToolbarActivity {
                         .replace(R.id.fragment_container, ChatListFragment.newInstance(this)).commit();
                 break;
             case R.id.nav_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, PrivateGalleryFragment.newInstance()).commit();
                 break;
         }
     }

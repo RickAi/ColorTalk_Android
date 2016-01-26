@@ -25,6 +25,11 @@ public interface ColorTalkService {
     @GET("users")
     Observable<UserResponse> getUsers();
 
+    // ['user_id']
+    @FormUrlEncoded
+    @POST("images")
+    Observable<ImageResponse> getPrivateImages(@Field("user_id") String user_id);
+
     // ['name', 'email', 'password', 'is_third', 'gender', 'birthday'];
     @FormUrlEncoded
     @POST("register")

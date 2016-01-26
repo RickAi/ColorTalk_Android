@@ -106,8 +106,8 @@
             android:process=":ipc" />
 
         <meta-data
-            android:name="p5tvi9dst1ys4"
-            android:value="1LuVKA2UPa" />
+            android:name="RONG_CLOUD_APP_KEY"
+            android:value="p5tvi9dst1ys4" />
     </application>
 
 </manifest>

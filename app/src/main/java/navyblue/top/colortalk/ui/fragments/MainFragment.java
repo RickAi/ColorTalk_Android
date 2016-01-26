@@ -58,14 +58,16 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
 
         mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this, mActivity);
+
+        mMomentList = new ArrayList<>();
+        setupRecyclerView();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mMomentList = new ArrayList<>();
-        setupRecyclerView();
 
+        mPage = 1;
         new Handler().postDelayed(() -> setRefreshing(true), 358);
         requestDataRefresh();
     }
@@ -73,9 +75,11 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     @Override
     public void onStop() {
         super.onStop();
+
+        // TODO: 跳转到新的一条动态，该Fragment 的列表不应该变化。只有添加完动态后才重新初始化列表。
+        mPage = 1;
         mMomentList.clear();
         mMomentAdapter.notifyDataSetChanged();
-        mPage = 1;
     }
 
     @Override
