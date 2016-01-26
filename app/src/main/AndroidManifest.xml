@@ -51,6 +51,10 @@
         </activity>
         <activity android:name=".ui.activities.ChatActivity">
         </activity>
+        <activity android:name=".ui.activities.PatternConfirmActivity">
+        </activity>
+        <activity android:name=".ui.activities.PatternSetActivity">
+        </activity>
         <activity android:name=".ui.activities.ConversationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -69,14 +73,14 @@
             android:windowSoftInputMode="stateHidden|adjustResize">
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
                 <data
                     android:host="navyblue.top.colortalk"
                     android:pathPrefix="/conversationlist"
-                    android:scheme="rong" />
+                    android:scheme="rong"/>
             </intent-filter>
         </activity>
         <activity

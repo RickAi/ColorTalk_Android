@@ -14,6 +14,12 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_action_settings"
             android:title="@string/navigation_gallery" />
+
+        <item
+            android:id="@+id/nav_edit"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/navigation_dummy_item_1" />
+
     </group>
 
     <item android:title="@string/navigation_sub_items">

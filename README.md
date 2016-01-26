@@ -44,3 +44,4 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [nuptboyzhb/QiniuUploadImageDemo](https://github.com/nuptboyzhb/QiniuUploadImageDemo)
 * [spengilley/ActivityFragmentMVP](https://github.com/spengilley/ActivityFragmentMVP)
 * [VEINHORN/ScrollGalleryView](git@github.com:VEINHORN/ScrollGalleryView.git)
+* [DreaminginCodeZH/PatternLock](https://github.com/DreaminginCodeZH/PatternLock)
