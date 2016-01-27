@@ -14,9 +14,6 @@ public class ConfirmPatternActivity extends me.zhanghai.android.patternlock.Conf
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-//        ThemeUtils.applyTheme(this);
-
         super.onCreate(savedInstanceState);
     }
 

@@ -34,6 +34,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Floating Action Button not showing fully inside a fragment](http://stackoverflow.com/questions/30731615/floating-action-button-not-showing-fully-inside-a-fragment)
 * [Retrofit and GET using parameters](http://stackoverflow.com/questions/24100372/retrofit-and-get-using-parameters)
 * [Fragment lifecycle](http://developer.android.com/reference/android/app/Fragment.html#Lifecycle)
+* [ 解决IllegalStateException: Can not perform this action after onSaveInstanceState](http://blog.csdn.net/ranxiedao/article/details/8214936)
 
 ## Reference projects
 

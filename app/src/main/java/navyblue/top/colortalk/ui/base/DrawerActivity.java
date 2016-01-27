@@ -1,5 +1,6 @@
 package navyblue.top.colortalk.ui.base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import navyblue.top.colortalk.ui.fragments.ChatListFragment;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
 import navyblue.top.colortalk.ui.fragments.PrivateGalleryFragment;
 import navyblue.top.colortalk.ui.fragments.SettingFragment;
+import navyblue.top.colortalk.util.PatternLockUtils;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
@@ -29,6 +31,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
     protected static final int NAV_DRAWER_ITEM_INVALID = -1;
 
     private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     FloatingActionButton fab;
 
@@ -54,7 +57,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
             return;
         }
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerSelectListener(navigationView);
             setSelectedItem(navigationView);
@@ -113,32 +116,57 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
         switch (item) {
             case R.id.nav_quotes:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, MainFragment.newInstance()).commit();
-                fab.setVisibility(View.VISIBLE);
+                loadMain();
                 break;
             case R.id.nav_samples:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, ChatListFragment.newInstance(this)).commit();
+                loadChatList();
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, PrivateGalleryFragment.newInstance()).commit();
-//                Intent intent = new Intent(this, PatternConfirmActivity.class);
-//                startActivityForResult(intent, PatternConfirmActivity.REQUEST_PATTERN_CONFIRM);
+                if(PatternLockUtils.hasPattern(this)){
+                    PatternLockUtils.confirmPatternIfHas(this);
+                } else{
+                    loadPrivateGallery();
+                }
                 break;
             case R.id.nav_edit:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, SettingFragment.newInstance()).commit();
+                loadSettingContent();
                 break;
         }
     }
 
+    private void loadMain(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, MainFragment.newInstance()).commitAllowingStateLoss();
+        fab.setVisibility(View.VISIBLE);
+        navigationView.setCheckedItem(R.id.nav_quotes);
+    }
+
+    private void loadChatList(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, ChatListFragment.newInstance(this)).commit();
+        navigationView.setCheckedItem(R.id.nav_samples);
+    }
+
+    private void loadPrivateGallery(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, PrivateGalleryFragment.newInstance()).commitAllowingStateLoss();
+        navigationView.setCheckedItem(R.id.nav_settings);
+    }
+
+    private void loadSettingContent(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, SettingFragment.newInstance()).commit();
+        navigationView.setCheckedItem(R.id.nav_edit);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN && resultCode != Activity.RESULT_OK) {
+            loadMain();
+        } else{
+            loadPrivateGallery();
+        }
         super.onActivityResult(requestCode, resultCode, data);
-
-
     }
 
     /**

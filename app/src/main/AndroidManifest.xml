@@ -64,6 +64,10 @@
                 android:value=".ui.activities.MainActivity" />
         </activity>
         <activity
+            android:name=".ui.activities.ConfirmPatternActivity"
+            android:label="@string/confirm_pattern_title"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".ui.activities.SetPatternActivity"
             android:label="@string/set_pattern_title"
             android:launchMode="singleTop">
