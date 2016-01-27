@@ -3,23 +3,26 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Key is specified here for dependency to work. -->
     <navyblue.top.colortalk.ui.preferences.SetPatternPreference
         android:key="pref_key_set_pattern"
         android:persistent="false"
-        android:title="@string/pref_title_set_pattern" />
+        android:title="@string/pref_title_set_pattern">
+        <intent
+            android:targetClass="navyblue.top.colortalk.ui.activities.SetPatternActivity"
+            android:targetPackage="navyblue.top.colortalk"/>
+    </navyblue.top.colortalk.ui.preferences.SetPatternPreference>
 
     <SwitchPreferenceCompat
-        android:key="pref_key_pattern_visible"
         android:defaultValue="true"
+        android:key="pref_key_pattern_visible"
         android:summaryOff="@string/pref_summary_pattern_visible_off"
         android:summaryOn="@string/pref_summary_pattern_visible_on"
-        android:title="@string/pref_title_pattern_visible" />
+        android:title="@string/pref_title_pattern_visible"/>
 
     <!-- support-v7 PreferenceDialogFragmentCompat needs a key to find its Preference. -->
     <navyblue.top.colortalk.ui.preferences.ClearPatternPreference
-        android:key="pref_key_clear_pattern"
-        android:title="@string/pref_title_clear_pattern"
         android:dependency="pref_key_set_pattern"
-        android:dialogMessage="@string/pref_dialog_message_clear_pattern" />
+        android:dialogMessage="@string/pref_dialog_message_clear_pattern"
+        android:key="pref_key_clear_pattern"
+        android:title="@string/pref_title_clear_pattern"/>
 </PreferenceScreen>

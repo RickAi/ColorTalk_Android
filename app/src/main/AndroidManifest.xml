@@ -55,12 +55,21 @@
         <!--Lock preference setting-->
         <activity android:name=".ui.activities.PatternConfirmActivity" android:launchMode="singleTop">
         </activity>
-        <activity android:name=".ui.activities.PatternSetActivity" android:launchMode="singleTop">
+        <activity
+            android:name=".ui.activities.PatternLockActivity"
+            android:label="@string/pattern_lock_title"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.MainActivity" />
         </activity>
         <activity
             android:name=".ui.activities.SetPatternActivity"
             android:label="@string/set_pattern_title"
             android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.PatternLockActivity" />
         </activity>
         <activity
             android:name=".ui.activities.ResetPatternActivity"

@@ -11,7 +11,7 @@ import me.zhanghai.android.patternlock.PatternUtils;
 import me.zhanghai.android.patternlock.PatternView;
 import navyblue.top.colortalk.app.Constants;
 import navyblue.top.colortalk.ui.activities.ConfirmPatternActivity;
-import navyblue.top.colortalk.ui.activities.PatternSetActivity;
+import navyblue.top.colortalk.ui.activities.PatternLockActivity;
 
 public class PatternLockUtils {
 
@@ -40,7 +40,7 @@ public class PatternLockUtils {
     }
 
     public static void setPatternByUser(Context context) {
-        context.startActivity(new Intent(context, PatternSetActivity.class));
+        context.startActivity(new Intent(context, PatternLockActivity.class));
     }
 
     // NOTE: Should only be called when there is a pattern for this account.

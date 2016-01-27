@@ -7,7 +7,7 @@
         android:title="@string/pref_title_pattern_lock">
         <intent
             android:targetPackage="navyblue.top.colortalk"
-            android:targetClass="navyblue.top.colortalk.ui.activities.PatternSetActivity" />
+            android:targetClass="navyblue.top.colortalk.ui.activities.PatternLockActivity" />
     </Preference>
 
     <Preference

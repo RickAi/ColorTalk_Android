@@ -6,15 +6,21 @@ import android.view.MenuItem;
 
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.base.ToolbarActivity;
+import navyblue.top.colortalk.util.AppUtils;
 import navyblue.top.colortalk.util.PatternLockUtils;
 
 /**
  * Created by CIR on 16/1/26.
  */
-public class PatternSetActivity extends ToolbarActivity {
+public class PatternLockActivity extends ToolbarActivity {
     private static final String KEY_CONFIRM_STARTED = "confirm_started";
 
     private boolean mConfirmStarted = false;
+
+    @Override
+    public boolean canBack() {
+        return true;
+    }
 
     @Override
     protected int provideContentViewId() {
@@ -45,7 +51,7 @@ public class PatternSetActivity extends ToolbarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                AppUtils.navigateUp(this);
+                AppUtils.navigateUp(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

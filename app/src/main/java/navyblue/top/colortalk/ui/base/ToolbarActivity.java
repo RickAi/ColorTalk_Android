@@ -19,7 +19,6 @@ public abstract class ToolbarActivity extends BaseActivity {
     abstract protected int provideContentViewId();
     public void onToolbarClick() {}
 
-
     private static final String TAG = makeLogTag(ToolbarActivity.class);
     protected AppBarLayout mAppBar;
     protected Toolbar mToolbar;
