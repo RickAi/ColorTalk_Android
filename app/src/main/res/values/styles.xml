@@ -9,7 +9,7 @@
     </style>
 
     <style name="Theme.Main" parent="Base.Theme">
-        <item name="patternViewStyle">@style/PatternView.ColorTalk</item>
+        <item name="patternViewStyle">@style/PatternView.Light</item>
     </style>
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -45,12 +45,6 @@
 
     <style name="Base.PatternView" parent="">
         <item name="aspect">square</item>
-    </style>
-
-    <style name="PatternView.ColorTalk" parent="Base.PatternView">
-        <item name="regularColor">@color/theme_primary_light</item>
-        <item name="errorColor">#fff4511e</item>
-        <item name="successColor">@color/green_300</item>
     </style>
 
 </resources>
