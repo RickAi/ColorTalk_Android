@@ -55,6 +55,8 @@
         </activity>
         <activity android:name=".ui.activities.PatternSetActivity">
         </activity>
+        <activity android:name=".ui.activities.AboutActivity">
+        </activity>
         <activity android:name=".ui.activities.ConversationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

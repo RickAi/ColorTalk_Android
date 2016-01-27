@@ -11,10 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import navyblue.top.colortalk.R;
-import navyblue.top.colortalk.ui.activities.PatternConfirmActivity;
 import navyblue.top.colortalk.ui.fragments.ChatListFragment;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
 import navyblue.top.colortalk.ui.fragments.PrivateGalleryFragment;
+import navyblue.top.colortalk.ui.fragments.SettingFragment;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
@@ -124,12 +124,21 @@ public abstract class DrawerActivity extends ToolbarActivity {
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, PrivateGalleryFragment.newInstance()).commit();
+//                Intent intent = new Intent(this, PatternConfirmActivity.class);
+//                startActivityForResult(intent, PatternConfirmActivity.REQUEST_PATTERN_CONFIRM);
                 break;
             case R.id.nav_edit:
-                Intent intent = new Intent(this, PatternConfirmActivity.class);
-                startActivityForResult(intent, PatternConfirmActivity.REQUEST_PATTERN_CONFIRM);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, SettingFragment.newInstance()).commit();
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     /**

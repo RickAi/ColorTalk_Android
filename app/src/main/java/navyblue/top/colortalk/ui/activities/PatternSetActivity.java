@@ -1,18 +1,63 @@
 package navyblue.top.colortalk.ui.activities;
 
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
 
-import me.zhanghai.android.patternlock.PatternUtils;
-import me.zhanghai.android.patternlock.PatternView;
-import me.zhanghai.android.patternlock.SetPatternActivity;
+import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.ui.base.ToolbarActivity;
+import navyblue.top.colortalk.util.PatternLockUtils;
 
 /**
  * Created by CIR on 16/1/26.
  */
-public class PatternSetActivity extends SetPatternActivity {
+public class PatternSetActivity extends ToolbarActivity {
+    private static final String KEY_CONFIRM_STARTED = "confirm_started";
+
+    private boolean mConfirmStarted = false;
+
     @Override
-    protected void onSetPattern(List<PatternView.Cell> pattern) {
-        String patternSha1 = PatternUtils.patternToSha1String(pattern);
-        // TODO: Save patternSha1 in SharedPreferences.
+    protected int provideContentViewId() {
+        return R.layout.activity_pattern_lock;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            mConfirmStarted = savedInstanceState.getBoolean(KEY_CONFIRM_STARTED);
+        }
+        if (!mConfirmStarted) {
+            PatternLockUtils.confirmPatternIfHas(this);
+            mConfirmStarted = true;
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(KEY_CONFIRM_STARTED, mConfirmStarted);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+//                AppUtils.navigateUp(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (PatternLockUtils.checkConfirmPatternResult(this, requestCode, resultCode)) {
+            mConfirmStarted = false;
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

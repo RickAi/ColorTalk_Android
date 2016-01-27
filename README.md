@@ -45,3 +45,4 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [spengilley/ActivityFragmentMVP](https://github.com/spengilley/ActivityFragmentMVP)
 * [VEINHORN/ScrollGalleryView](git@github.com:VEINHORN/ScrollGalleryView.git)
 * [DreaminginCodeZH/PatternLock](https://github.com/DreaminginCodeZH/PatternLock)
+* [kcochibili/TinyDB--Android-Shared-Preferences-Turbo](https://github.com/kcochibili/TinyDB--Android-Shared-Preferences-Turbo)
