@@ -7,9 +7,13 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * 分享查看
 * 分享评论与点赞
 * 第三方登陆集成
+* 第三方分享集成
 * 图片修剪
+* 私人空间密码锁
 * 图片存储
 * 在线聊天
+* Splash
+* 更换主题颜色
 
 ## Reference documents
 1. [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
