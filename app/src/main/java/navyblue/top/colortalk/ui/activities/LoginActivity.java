@@ -3,7 +3,6 @@ package navyblue.top.colortalk.ui.activities;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -29,8 +28,9 @@ import navyblue.top.colortalk.app.Constants;
 import navyblue.top.colortalk.mvp.presenter.abs.ILoginPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.LoginPresenter;
 import navyblue.top.colortalk.mvp.view.abs.ILoginView;
+import navyblue.top.colortalk.ui.base.BaseLoginActivity;
 
-public class LoginActivity extends AppCompatActivity
+public class LoginActivity extends BaseLoginActivity
         implements View.OnClickListener, ILoginView {
 
     private static final String TAG = "LoginActivity";
@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        // TODO: 设置一个APP 入口，如果已经登陆成功就不再需要跳转到这个Activity 里了。
 
         initStatus();
         initVideo();
