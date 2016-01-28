@@ -1,10 +1,20 @@
 package navyblue.top.colortalk.mvp.presenter.impl;
 
+import android.content.Context;
+
 import com.socks.library.KLog;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
+import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.app.ColorTalkApp;
+import navyblue.top.colortalk.app.Constants;
 import navyblue.top.colortalk.db.beans.AccountBean;
 import navyblue.top.colortalk.mvp.models.RongToken;
 import navyblue.top.colortalk.mvp.models.User;
@@ -71,11 +81,34 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
     @Override
     public void loginCheck() {
         if (AccountBean.existAccountCache()) {
+            mBaseView.showProcess();
             AccountBean account = AccountBean.getCachedAccount();
             ColorTalkApp.sAccount = account;
-            initRongConnection(false);
+            initRongConnection();
             KLog.d("loginCheck", ColorTalkApp.sAccount.toString());
         }
+    }
+
+    @Override
+    public File copyVideoFile() {
+        File videoFile;
+        try {
+            FileOutputStream fos = mActivity.openFileOutput(Constants.VIDEO_NAME, Context.MODE_PRIVATE);
+            InputStream in = mActivity.getResources().openRawResource(R.raw.welcome_video);
+            byte[] buff = new byte[1024];
+            int len = 0;
+            while ((len = in.read(buff)) != -1) {
+                fos.write(buff, 0, len);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        videoFile = mActivity.getFileStreamPath(Constants.VIDEO_NAME);
+        if (!videoFile.exists())
+            throw new RuntimeException("video file has problem, are you sure you have welcome_video.mp4 in res/raw folder?");
+        return videoFile;
     }
 
     private void cacheLoginAccount(final User user) {
@@ -98,12 +131,12 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
                         String token = rongToken.getToken();
                         AccountBean.cacheAccountInfo(user, token);
                         ColorTalkApp.sAccount = new AccountBean(user, token);
-                        initRongConnection(true);
+                        initRongConnection();
                     }
                 });
     }
 
-    private void initRongConnection(final boolean isLocal) {
+    private void initRongConnection() {
         String token = ColorTalkApp.getRongToken();
         if (mActivity.getApplicationInfo().packageName.equals(ColorTalkApp.getCurProcessName(mActivity.getApplicationContext()))) {
             /**
@@ -126,9 +159,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
                 @Override
                 public void onSuccess(String userid) {
                     KLog.d("LoginActivity", "--onSuccess" + userid);
-                    if(isLocal){
-                        mBaseView.hideProcess();
-                    }
+                    mBaseView.hideProcess();
                     mBaseView.gotoMainActivity();
                 }
 

@@ -1,6 +1,7 @@
 package navyblue.top.colortalk.ui.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,18 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
+import java.io.File;
 import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.app.Constants;
 import navyblue.top.colortalk.mvp.presenter.abs.ILoginPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.LoginPresenter;
 import navyblue.top.colortalk.mvp.view.abs.ILoginView;
@@ -30,6 +35,8 @@ public class LoginActivity extends AppCompatActivity
 
     private static final String TAG = "LoginActivity";
 
+    @Bind(R.id.vv_login)
+    VideoView mVideoView;
     @Bind(R.id.login_progress)
     ProgressBar mLoginProgress;
     @Bind(R.id.txt_email)
@@ -62,9 +69,22 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        init();
+        initStatus();
+        initVideo();
         initUmeng();
         setListeners();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mVideoView.stopPlayback();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mShareAPI.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -84,12 +104,6 @@ public class LoginActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mShareAPI.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
     public void showProcess() {
         mLoginProgress.setVisibility(View.VISIBLE);
     }
@@ -106,7 +120,12 @@ public class LoginActivity extends AppCompatActivity
         finish();
     }
 
-    private void init() {
+    @Override
+    public void onFailure(Throwable e) {
+
+    }
+
+    private void initStatus() {
         mLoginPresenter = new LoginPresenter();
         mLoginPresenter.attachView(this);
 
@@ -135,6 +154,23 @@ public class LoginActivity extends AppCompatActivity
         };
     }
 
+    private void initVideo() {
+        File videoFile = getFileStreamPath(Constants.VIDEO_NAME);
+        if (!videoFile.exists()) {
+            videoFile = mLoginPresenter.copyVideoFile();
+        }
+
+        mVideoView.setVideoPath(videoFile.getPath());
+        mVideoView.setLayoutParams(new RelativeLayout.LayoutParams(-1, -1));
+        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+                mediaPlayer.start();
+            }
+        });
+    }
+
     private void setListeners() {
         mIvWeiboLogin.setOnClickListener(this);
         mIvDoubanLogin.setOnClickListener(this);
@@ -153,11 +189,5 @@ public class LoginActivity extends AppCompatActivity
             }
         });
     }
-
-    @Override
-    public void onFailure(Throwable e) {
-
-    }
-
 
 }

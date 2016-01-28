@@ -17,4 +17,6 @@ public class Constants {
     public static final String KEY_PATTERN_VISIBLE = "pref_key_pattern_visible";
     public static final Boolean DEFAULT_PATTERN_VISIBLE = true;
 
+    public static final String VIDEO_NAME = "welcome_video.mp4";
+
 }

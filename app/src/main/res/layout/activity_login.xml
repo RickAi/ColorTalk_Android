@@ -1,10 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-              android:layout_height="match_parent" android:gravity="center_horizontal"
-              android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity">
+
+    <navyblue.top.colortalk.ui.widgets.LoginVideoView
+        android:id="@+id/vv_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <!-- Login progress -->
     <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
@@ -153,11 +159,11 @@
                 android:id="@+id/umeng_login_incons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin"
                 android:layout_marginTop="@dimen/login_up_margin"
                 android:orientation="horizontal"
-                android:weightSum="4"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
+                android:weightSum="4">
 
                 <ImageView
                     android:id="@+id/iv_weibo_login"
@@ -166,18 +172,18 @@
                     android:background="@drawable/umeng_socialize_sina_off"/>
                 <ImageView
                     android:id="@+id/iv_wechat_login"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
                     android:background="@drawable/umeng_socialize_wechat_gray"/>
                 <ImageView
                     android:id="@+id/iv_douban_login"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
                     android:background="@drawable/umeng_socialize_douban_off"/>
                 <ImageView
                     android:id="@+id/iv_qq_login"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
                     android:background="@drawable/umeng_socialize_qq_off"/>
 
             </LinearLayout>
@@ -185,4 +191,4 @@
         </LinearLayout>
 
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>
