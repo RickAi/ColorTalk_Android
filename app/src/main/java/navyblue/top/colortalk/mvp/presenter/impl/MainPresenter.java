@@ -7,6 +7,7 @@ import android.view.View;
 
 import java.util.List;
 
+import navyblue.top.colortalk.app.ColorTalkApp;
 import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
@@ -31,7 +32,7 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
         //        mLastVideoIndex = 0;
         // @formatter:off
 
-        Subscription s = sColorTalkService.getMoments(page)
+        Subscription s = sColorTalkService.getMoments(page, String.valueOf(ColorTalkApp.getUserID()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<MomentResponse>() {
