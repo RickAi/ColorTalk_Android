@@ -29,9 +29,6 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
 
     @Override
     public void loadMoments(boolean clean, int page) {
-        //        mLastVideoIndex = 0;
-        // @formatter:off
-
         Subscription s = sColorTalkService.getMoments(page, String.valueOf(ColorTalkApp.getUserID()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

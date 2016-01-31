@@ -26,9 +26,6 @@ public interface ColorTalkService {
     /**
      * Moment
      */
-    @GET("moments")
-    Observable<MomentResponse> getMoments(@Query("page") int page);
-
     @FormUrlEncoded
     @POST("getMoments")
     Observable<MomentResponse> getMoments(@Query("page") int page, @Field("user_id") String user_id);
