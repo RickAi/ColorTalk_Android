@@ -23,6 +23,7 @@
     <string name="navigation_main">Main</string>
     <string name="navigation_chat">Chat</string>
     <string name="navigation_gallery">Gallery</string>
+    <string name="navigation_picture_edit">Picture</string>
     <string name="navigation_sub_items">Sub items</string>
     <string name="navigation_dummy_item_1">Setting</string>
     <string name="navigation_dummy_item_2">Dummy item 2</string>

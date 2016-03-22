@@ -80,6 +80,7 @@
                         android:maxLines="1"
                         android:padding="8dp"
                         android:singleLine="true"
+                        android:text="admin@admin.com"
                         android:textColorHint="@color/grey_0"/>
                     <!--android:textColorHint="@color/abc_primary_text_material_dark" />-->
                 </android.support.design.widget.TextInputLayout>
@@ -97,6 +98,7 @@
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="8dp"
+                        android:text="admin"
                         android:singleLine="true"
                         android:textColorHint="@color/grey_0"/>
                 </android.support.design.widget.TextInputLayout>

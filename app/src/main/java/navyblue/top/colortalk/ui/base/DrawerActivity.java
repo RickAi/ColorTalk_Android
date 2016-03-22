@@ -14,6 +14,7 @@ import android.view.View;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.ui.fragments.ChatListFragment;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
+import navyblue.top.colortalk.ui.fragments.PictureEditFragment;
 import navyblue.top.colortalk.ui.fragments.PrivateGalleryFragment;
 import navyblue.top.colortalk.ui.fragments.SettingFragment;
 import navyblue.top.colortalk.util.PatternLockUtils;
@@ -131,7 +132,17 @@ public abstract class DrawerActivity extends ToolbarActivity {
             case R.id.nav_edit:
                 loadSettingContent();
                 break;
+            case R.id.nav_picture_edit:
+                loadPictureEdit();
+                break;
         }
+    }
+
+    private void loadPictureEdit() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, PictureEditFragment.newInstance()).commitAllowingStateLoss();
+        fab.setVisibility(View.VISIBLE);
+        navigationView.setCheckedItem(R.id.nav_picture_edit);
     }
 
     private void loadMain(){
