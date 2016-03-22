@@ -21,7 +21,6 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
     // 步骤3. 找到相关的功能代码，试着把他们放到这个类，期间可能需要拷贝类与新建类
     // 步骤4. 反复运行与测试
 
-
     private PictureEditPresenter mPresenter;
 
     public static PictureEditFragment newInstance() {

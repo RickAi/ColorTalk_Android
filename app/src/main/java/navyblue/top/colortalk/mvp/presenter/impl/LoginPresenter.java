@@ -68,6 +68,8 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
                     @Override
                     public void onError(Throwable e) {
 
+                        // TODO: 在这里进行一些网络错误报错
+
                     }
 
                     @Override
