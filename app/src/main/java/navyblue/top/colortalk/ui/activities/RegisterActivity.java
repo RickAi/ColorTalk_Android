@@ -11,6 +11,9 @@ import navyblue.top.colortalk.ui.base.BaseLoginActivity;
 // 步骤3. 优化activity_login，把界面调的好看点
 // 步骤4. 替换点login 的视频文件，换成符合我们app 主题的video. video 文件是res/raw/welcome_video.mp4，替换时注意新文件名和旧文件名一样
 
+// 附加1: 怎么访问网络可以看看mvp/presetner/impl/LoginPresetner 是怎么访问网络的
+// 附加2: 抽空看看mvp 模式，我们的项目采用的就是mvp 模式，可以好好看看代码是怎么组织的
+
 /**
  * Created by CIR on 16/3/22.
  */
