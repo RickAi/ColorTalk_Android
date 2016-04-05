@@ -20,12 +20,12 @@
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/layout/rc_item_public_service_conversation.xml"
     },
     {
-        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/layout/rc_item_public_service_input_menus.xml",
-        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/layout/rc_item_public_service_input_menus.xml"
-    },
-    {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/layout/rc_item_public_service_message.xml",
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/layout/rc_item_public_service_message.xml"
+    },
+    {
+        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/layout/rc_item_public_service_input_menus.xml",
+        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/layout/rc_item_public_service_input_menus.xml"
     },
     {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/layout/rc_item_public_service_input_menu_item.xml",

@@ -4,16 +4,16 @@
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_btn_hands_free_selector.xml"
     },
     {
-        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_btn_over_selector.xml",
-        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_btn_over_selector.xml"
+        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_switch_btn.xml",
+        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_switch_btn.xml"
     },
     {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_bg_menu.xml",
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_bg_menu.xml"
     },
     {
-        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_switch_btn.xml",
-        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_switch_btn.xml"
+        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_btn_over_selector.xml",
+        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_btn_over_selector.xml"
     },
     {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_btn_send.xml",
