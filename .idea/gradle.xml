@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/IMKit" />
-            <option value="$PROJECT_DIR$/TuSDK" />
+            <option value="$PROJECT_DIR$/PG_Edit_SDK" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

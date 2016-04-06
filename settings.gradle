@@ -1,1 +1,1 @@
-include ':app', ':IMKit', ':TuSDK'
+include ':app', ':IMKit', ':PG_Edit_SDK'
