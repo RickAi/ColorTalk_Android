@@ -1,8 +1,8 @@
 package navyblue.top.colortalk.app;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.activeandroid.ActiveAndroid;
 import com.umeng.socialize.PlatformConfig;
@@ -14,7 +14,7 @@ import navyblue.top.colortalk.util.ToastUtils;
 /**
  * Created by CIR on 16/1/12.
  */
-public class ColorTalkApp extends Application {
+public class ColorTalkApp extends MultiDexApplication {
 
     public static AccountBean sAccount = null;
 
