@@ -172,10 +172,12 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN && resultCode != Activity.RESULT_OK) {
-            loadMain();
-        } else{
-            loadPrivateGallery();
+        if(requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN){
+            if (resultCode != Activity.RESULT_OK) {
+                loadMain();
+            } else{
+                loadPrivateGallery();
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
