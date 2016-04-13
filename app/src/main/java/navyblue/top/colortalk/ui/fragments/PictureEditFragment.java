@@ -110,7 +110,7 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
 
     public void startEdit(View v) {
         if (null == mPicturePath) {
-            //   Toast.makeText(this, "Please choose photo first", Toast.LENGTH_SHORT).show();
+               Toast.makeText(mActivity, "Please choose photo first", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -122,7 +122,7 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         }
 
         // add .getactivity
-        PGEditSDK.instance().startEdit(this.getActivity(), PGEditActivity.class, mPicturePath, outFilePath);
+        PGEditSDK.instance().startEdit(mActivity, PGEditActivity.class, mPicturePath, outFilePath);
 
 
     }

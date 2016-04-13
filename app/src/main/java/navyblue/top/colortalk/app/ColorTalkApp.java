@@ -10,6 +10,8 @@ import com.umeng.socialize.PlatformConfig;
 import io.rong.imkit.RongIM;
 import navyblue.top.colortalk.db.beans.AccountBean;
 import navyblue.top.colortalk.util.ToastUtils;
+import us.pinguo.edit.sdk.PGEditImageLoader;
+import us.pinguo.edit.sdk.base.PGEditSDK;
 
 /**
  * Created by CIR on 16/1/12.
@@ -39,6 +41,8 @@ public class ColorTalkApp extends MultiDexApplication {
         }
         ActiveAndroid.initialize(this);
         ToastUtils.register(this);
+        PGEditImageLoader.initImageLoader(this);
+        PGEditSDK.instance().initSDK(this);
     }
 
     public static int getUserID(){
