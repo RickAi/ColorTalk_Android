@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +122,6 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
             outFilePath = outFilePath.replaceAll("jpg", "png");
         }
 
-        // add .getactivity
         PGEditSDK.instance().startEdit(mActivity, PGEditActivity.class, mPicturePath, outFilePath);
 
 
@@ -136,6 +136,12 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        //
+        //Fragment f = getFragmentManager().findFragmentByTag();
+        //f.onActivityResult(requestCode,resultCode,data);
+        //
+
 
         if (requestCode == REQUEST_CODE_PICK_PICTURE
                 && resultCode == Activity.RESULT_OK
@@ -160,6 +166,8 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
             return;
         }
 
+
+        //check here
         if (requestCode == PGEditSDK.PG_EDIT_SDK_REQUEST_CODE
                 && resultCode == Activity.RESULT_OK) {
 
@@ -194,11 +202,11 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         mImage.setVisibility(View.GONE);
         mImage.setImageBitmap(null);
 
-//        mLogo.setVisibility(View.VISIBLE);
+
 
         mReEditBtn.setVisibility(View.GONE);
 
-        mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_disable);
+     //   mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_disable);
         mEditBtn.setTextColor(Color.parseColor("#444444"));
         mEditBtn.setVisibility(View.VISIBLE);
         mChoosePhotoBtn.setVisibility(View.VISIBLE);
@@ -207,10 +215,10 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
     }
 
     private void enterEditState() {
-//        mLogo.setVisibility(View.INVISIBLE);
+
         mImage.setVisibility(View.VISIBLE);
 
-        mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_enable);
+     //   mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_enable);
         mEditBtn.setTextColor(Color.WHITE);
     }
 
