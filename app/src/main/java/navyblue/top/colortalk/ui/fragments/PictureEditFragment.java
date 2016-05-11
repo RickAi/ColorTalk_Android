@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,7 +96,6 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         super.onViewCreated(view, savedInstanceState);
 
 
-
     }
 
     @Override
@@ -111,7 +109,7 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
 
     public void startEdit(View v) {
         if (null == mPicturePath) {
-               Toast.makeText(mActivity, "Please choose photo first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Please choose photo first", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -203,10 +201,9 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         mImage.setImageBitmap(null);
 
 
-
         mReEditBtn.setVisibility(View.GONE);
 
-     //   mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_disable);
+        //   mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_disable);
         mEditBtn.setTextColor(Color.parseColor("#444444"));
         mEditBtn.setVisibility(View.VISIBLE);
         mChoosePhotoBtn.setVisibility(View.VISIBLE);
@@ -218,7 +215,7 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
 
         mImage.setVisibility(View.VISIBLE);
 
-     //   mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_enable);
+        //   mEditBtn.setBackgroundResource(R.drawable.sdk_sample_rect_btn_enable);
         mEditBtn.setTextColor(Color.WHITE);
     }
 
