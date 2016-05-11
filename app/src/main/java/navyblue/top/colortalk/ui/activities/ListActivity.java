@@ -108,7 +108,7 @@ public class ListActivity extends DrawerActivity implements ArticleListFragment.
 
     @Override
     protected int getSelfNavDrawerItem() {
-        return R.id.nav_quotes;
+        return R.id.nav_main;
     }
 
 }

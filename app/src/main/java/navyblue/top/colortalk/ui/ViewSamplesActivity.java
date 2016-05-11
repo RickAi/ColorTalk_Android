@@ -60,7 +60,7 @@ public class ViewSamplesActivity extends DrawerActivity {
 
     @Override
     protected int getSelfNavDrawerItem() {
-        return R.id.nav_samples;
+        return R.id.nav_chat;
     }
 
 }

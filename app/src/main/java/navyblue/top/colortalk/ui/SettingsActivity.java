@@ -51,7 +51,7 @@ public class SettingsActivity extends DrawerActivity {
 
     @Override
     protected int getSelfNavDrawerItem() {
-        return R.id.nav_settings;
+        return R.id.nav_gallery;
     }
 
     public static class SettingsFragment extends PreferenceFragment {

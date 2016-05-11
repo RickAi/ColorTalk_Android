@@ -16,6 +16,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * 更换主题颜色
 * App About页面
 * App 初次登陆介绍
+* 第三方登陆
 
 ## Reference documents
 1. [AndroidStudio-/vendor/lib, /system/lib couldn't find "libweibosdkcore.so"](http://blog.csdn.net/oneym/article/details/50472736)
@@ -41,6 +42,7 @@ ColorTalk 是一个图片分享社区，为志同道合的图片分享者提供�
 * [Retrofit and GET using parameters](http://stackoverflow.com/questions/24100372/retrofit-and-get-using-parameters)
 * [Fragment lifecycle](http://developer.android.com/reference/android/app/Fragment.html#Lifecycle)
 * [ 解决IllegalStateException: Can not perform this action after onSaveInstanceState](http://blog.csdn.net/ranxiedao/article/details/8214936)
+* [Rong Cloud 显示用户昵称和头像](http://www.rongcloud.cn/docs/android.html#显示用户昵称和头像)
 
 ## Reference projects
 

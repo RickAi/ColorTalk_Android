@@ -62,7 +62,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
         if (navigationView != null) {
             setupDrawerSelectListener(navigationView);
             setSelectedItem(navigationView);
-            navigationView.setCheckedItem(R.id.nav_quotes);
+            navigationView.setCheckedItem(R.id.nav_main);
         }
 
         logD(TAG, "navigation drawer setup finished");
@@ -116,20 +116,20 @@ public abstract class DrawerActivity extends ToolbarActivity {
         fab.setVisibility(View.GONE);
 
         switch (item) {
-            case R.id.nav_quotes:
+            case R.id.nav_main:
                 loadMain();
                 break;
-            case R.id.nav_samples:
+            case R.id.nav_chat:
                 loadChatList();
                 break;
-            case R.id.nav_settings:
+            case R.id.nav_gallery:
                 if(PatternLockUtils.hasPattern(this)){
                     PatternLockUtils.confirmPatternIfHas(this);
                 } else{
                     loadPrivateGallery();
                 }
                 break;
-            case R.id.nav_edit:
+            case R.id.nav_setting:
                 loadSettingContent();
                 break;
             case R.id.nav_picture_edit:
@@ -141,7 +141,6 @@ public abstract class DrawerActivity extends ToolbarActivity {
     private void loadPictureEdit() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, PictureEditFragment.newInstance()).commitAllowingStateLoss();
-        fab.setVisibility(View.VISIBLE);
         navigationView.setCheckedItem(R.id.nav_picture_edit);
     }
 
@@ -149,25 +148,25 @@ public abstract class DrawerActivity extends ToolbarActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, MainFragment.newInstance()).commitAllowingStateLoss();
         fab.setVisibility(View.VISIBLE);
-        navigationView.setCheckedItem(R.id.nav_quotes);
+        navigationView.setCheckedItem(R.id.nav_main);
     }
 
     private void loadChatList(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, ChatListFragment.newInstance(this)).commit();
-        navigationView.setCheckedItem(R.id.nav_samples);
+        navigationView.setCheckedItem(R.id.nav_chat);
     }
 
     private void loadPrivateGallery(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, PrivateGalleryFragment.newInstance()).commitAllowingStateLoss();
-        navigationView.setCheckedItem(R.id.nav_settings);
+        navigationView.setCheckedItem(R.id.nav_gallery);
     }
 
     private void loadSettingContent(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, SettingFragment.newInstance()).commit();
-        navigationView.setCheckedItem(R.id.nav_edit);
+        navigationView.setCheckedItem(R.id.nav_setting);
     }
 
     @Override

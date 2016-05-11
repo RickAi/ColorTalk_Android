@@ -2,39 +2,37 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_quotes"
+            android:id="@+id/nav_main"
             android:icon="@drawable/ic_discuss"
-            android:title="@string/navigation_main" />
+            android:title="@string/navigation_main"/>
         <item
-            android:id="@+id/nav_samples"
+            android:id="@+id/nav_chat"
             android:icon="@drawable/ic_forum"
-            android:title="@string/navigation_chat" />
+            android:title="@string/navigation_chat"/>
 
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_dashboard"
-            android:title="@string/navigation_gallery" />
+            android:title="@string/navigation_gallery"/>
 
         <item
             android:id="@+id/nav_picture_edit"
             android:icon="@drawable/ic_dashboard"
-            android:title="@string/navigation_picture_edit" />
-
-        <item
-            android:id="@+id/nav_edit"
-            android:icon="@drawable/ic_action_settings"
-            android:title="@string/navigation_dummy_item_1" />
+            android:title="@string/navigation_picture_edit"/>
 
     </group>
 
     <item android:title="@string/navigation_sub_items">
         <menu>
             <item
-                android:icon="@drawable/ic_dashboard"
-                android:title="@string/navigation_dummy_item_1" />
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_action_settings"
+                android:title="@string/navigation_setting"/>
+
             <item
+                android:id="@+id/nav_about"
                 android:icon="@drawable/ic_dashboard"
-                android:title="@string/navigation_dummy_item_2" />
+                android:title="@string/navigation_about"/>
         </menu>
     </item>
 
