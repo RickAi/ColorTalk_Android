@@ -4,9 +4,11 @@ package navyblue.top.colortalk.ui.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -44,7 +46,6 @@ public class MomentAdapter
         return new ViewHolder(v);
     }
 
-
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         Moment moment = mList.get(position);
@@ -53,6 +54,9 @@ public class MomentAdapter
                 "..." : moment.getText();
         viewHolder.moment = moment;
         viewHolder.momentText.setText(text);
+        if(TextUtils.isEmpty(text)){
+            viewHolder.momentText.setVisibility(View.GONE);
+        }
         viewHolder.card.setTag(moment.getText());
 
         Glide.with(mContext)
@@ -89,6 +93,10 @@ public class MomentAdapter
         RatioImageView momentImage;
         @Bind(R.id.tv_moment_text)
         TextView momentText;
+        @Bind(R.id.iv_user_icon)
+        ImageView userIconImage;
+        @Bind(R.id.tv_user_name)
+        TextView userNameText;
         View card;
         Moment moment;
 
@@ -97,14 +105,14 @@ public class MomentAdapter
             card = itemView;
             ButterKnife.bind(this, itemView);
             momentImage.setOnClickListener(this);
-            card.setOnClickListener(this);
+            userIconImage.setOnClickListener(this);
             momentImage.setOriginalSize(50, 50);
         }
 
 
         @Override
         public void onClick(View v) {
-            mOnMomentListener.onTouch(v, momentImage, card, moment);
+            mOnMomentListener.onTouch(v, momentImage, card, moment, userIconImage);
         }
     }
 

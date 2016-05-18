@@ -19,6 +19,7 @@ import us.pinguo.edit.sdk.base.PGEditSDK;
 public class ColorTalkApp extends MultiDexApplication {
 
     public static AccountBean sAccount = null;
+    public static boolean postedImage;
 
     //各个平台的配置，建议放在全局Application或者程序入口
     {

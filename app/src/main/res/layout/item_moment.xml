@@ -3,8 +3,8 @@
 <LinearLayout
     android:id="@+id/meizhi_card"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:visibility="invisible"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="1dp"
@@ -12,7 +12,7 @@
     android:layout_marginTop="2dp"
     android:background="@drawable/bg_card"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical" android:visibility="invisible">
 
     <navyblue.top.colortalk.ui.widgets.RatioImageView
         android:id="@+id/iv_moment_image"
@@ -21,24 +21,45 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/tmp_user_icon"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="4dp"
+            android:layout_toRightOf="@id/iv_user_icon"
+            android:layout_alignBottom="@id/iv_user_icon"
+            android:text="@string/navigation_title"/>
+
         <TextView
             android:id="@+id/tv_moment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/iv_user_icon"
+            android:layout_marginTop="4dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Title"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
 

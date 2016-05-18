@@ -7,15 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.app.ColorTalkApp;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.ui.base.DrawerActivity;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
@@ -25,10 +24,10 @@ public class MainActivity extends DrawerActivity {
     public final static String TAG = "MainActivity";
     @Bind(R.id.fragment_container)
     FrameLayout mFragmentContainer;
-    @Bind(R.id.tv_user_name)
-    TextView mTvUserName;
-    @Bind(R.id.iv_user_icon)
-    CircleImageView mIvUserIcon;
+//    @Bind(R.id.tv_user_name)
+//    TextView mTvUserName;
+//    @Bind(R.id.iv_user_icon)
+//    CircleImageView mIvUserIcon;
 
     @Override
     protected int provideContentViewId() {
@@ -50,6 +49,7 @@ public class MainActivity extends DrawerActivity {
     @OnClick(R.id.main_fab)
     public void onFab(View v) {
         Intent intent = new Intent(this, MomentPostActivity.class);
+        ColorTalkApp.postedImage = true;
         startActivity(intent);
     }
 

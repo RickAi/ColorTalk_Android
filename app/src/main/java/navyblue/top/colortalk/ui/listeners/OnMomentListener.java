@@ -20,13 +20,13 @@
 package navyblue.top.colortalk.ui.listeners;
 
 import android.view.View;
+import android.widget.ImageView;
 
 import navyblue.top.colortalk.mvp.models.Moment;
 
 /**
- * 邪恶的 class 名。。。。
  * Created by drakeet on 7/1/15.
  */
 public interface OnMomentListener {
-    void onTouch(View v, View imageView, View card, Moment moment);
+    void onTouch(View v, View imageView, View card, Moment moment, ImageView userIconImage);
 }

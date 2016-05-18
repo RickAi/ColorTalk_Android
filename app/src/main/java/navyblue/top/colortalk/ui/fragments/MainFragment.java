@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import io.rong.imkit.RongIM;
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.app.ColorTalkApp;
 import navyblue.top.colortalk.mvp.models.Image;
 import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
@@ -67,9 +69,19 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     public void onStart() {
         super.onStart();
 
-        mPage = 1;
-        new Handler().postDelayed(() -> setRefreshing(true), 358);
-        requestDataRefresh();
+        if(mMomentList.size() == 0){
+            mPage = 1;
+            new Handler().postDelayed(() -> setRefreshing(true), 358);
+            requestDataRefresh();
+        }
+
+        if(ColorTalkApp.postedImage){
+            ColorTalkApp.postedImage = false;
+            mPage = 1;
+            mMomentList.clear();
+            new Handler().postDelayed(() -> setRefreshing(true), 358);
+            requestDataRefresh();
+        }
     }
 
     @Override
@@ -77,9 +89,9 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
         super.onStop();
 
         // TODO: 跳转到新的一条动态，该Fragment 的列表不应该变化。只有添加完动态后才重新初始化列表。
-        mPage = 1;
-        mMomentList.clear();
-        mMomentAdapter.notifyDataSetChanged();
+//        mPage = 1;
+//        mMomentList.clear();
+//        mMomentAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -115,6 +127,7 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     public void onFailure(Throwable e) {
 
     }
+
     private void setupRecyclerView() {
         final StaggeredGridLayoutManager layoutManager
                 = new StaggeredGridLayoutManager(2,
@@ -148,7 +161,7 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
     }
 
     private OnMomentListener getOnMomentTouchListener() {
-        return (v, imageView, card, moment) -> {
+        return (v, imageView, card, moment, userIconImage) -> {
             Image image = moment.getImage();
 
             if (moment == null) return;
@@ -167,19 +180,11 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
                         mMomentBeTouched = false;
                     }
                 });
-            } else if (v == card) {
-                Picasso.with(mActivity).load(image.getImageUrl()).fetch(new Callback() {
+            } else if (v == userIconImage) {
+                int userID = moment.getUserId();
+                if (RongIM.getInstance() != null)
+                    RongIM.getInstance().startPrivateChat(mActivity, String.valueOf(userID), "title");
 
-                    @Override
-                    public void onSuccess() {
-                        mMainPresenter.showMoment(moment, imageView);
-                    }
-
-                    @Override
-                    public void onError() {
-                        mMomentBeTouched = false;
-                    }
-                });
             }
         };
     }
