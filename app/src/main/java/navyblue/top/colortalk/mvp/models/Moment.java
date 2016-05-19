@@ -2,6 +2,8 @@ package navyblue.top.colortalk.mvp.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import navyblue.top.colortalk.rest.models.UserInfo;
+
 /**
  * Created by CIR on 16/1/16.
  */
@@ -14,6 +16,7 @@ public class Moment {
      * image : {"id":1,"image_url":"7xkmui.com1.z0.glb.clouddn.com/kfjdsk","user_id":1,"type":0}
      */
 
+    private UserInfo userInfo;
     @SerializedName("id")
     private int id;
     @SerializedName("text")
@@ -29,6 +32,14 @@ public class Moment {
 
     @SerializedName("image")
     private Image image;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public void setId(int id) {
         this.id = id;

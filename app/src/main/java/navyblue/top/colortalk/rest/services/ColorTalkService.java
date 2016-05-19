@@ -10,6 +10,7 @@ import navyblue.top.colortalk.mvp.models.User;
 import navyblue.top.colortalk.rest.models.CommentResponse;
 import navyblue.top.colortalk.rest.models.ImageResponse;
 import navyblue.top.colortalk.rest.models.MomentResponse;
+import navyblue.top.colortalk.rest.models.UserInfo;
 import navyblue.top.colortalk.rest.models.UserResponse;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -59,7 +60,8 @@ public interface ColorTalkService {
     Observable<CommentLike> likeComment(@Path("moments") int moment_id, @Path("comments") int comment_id,
                                        @Field("user_id") String user_id);
 
-
+    @GET("users/{users}/user_info")
+    Observable<UserInfo> getUserInfo(@Path("users") int user_id);
     @GET("images")
     Observable<ImageResponse> getImages();
     @GET("users")

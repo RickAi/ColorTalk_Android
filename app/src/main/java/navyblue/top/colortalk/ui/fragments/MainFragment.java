@@ -1,5 +1,6 @@
 package navyblue.top.colortalk.ui.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -24,9 +25,14 @@ import navyblue.top.colortalk.mvp.models.Moment;
 import navyblue.top.colortalk.mvp.presenter.abs.IMainPresenter;
 import navyblue.top.colortalk.mvp.presenter.impl.MainPresenter;
 import navyblue.top.colortalk.mvp.view.abs.IMainView;
+import navyblue.top.colortalk.rest.ServiceFactory;
+import navyblue.top.colortalk.rest.models.UserInfo;
 import navyblue.top.colortalk.ui.adapters.MomentAdapter;
 import navyblue.top.colortalk.ui.base.SwipeRefreshFragment;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by CIR on 16/1/19.
@@ -82,16 +88,6 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
             new Handler().postDelayed(() -> setRefreshing(true), 358);
             requestDataRefresh();
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // TODO: 跳转到新的一条动态，该Fragment 的列表不应该变化。只有添加完动态后才重新初始化列表。
-//        mPage = 1;
-//        mMomentList.clear();
-//        mMomentAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -181,10 +177,38 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
                     }
                 });
             } else if (v == userIconImage) {
-                int userID = moment.getUserId();
-                if (RongIM.getInstance() != null)
-                    RongIM.getInstance().startPrivateChat(mActivity, String.valueOf(userID), "title");
+                ServiceFactory.getColorTalkSingleton().getUserInfo(moment.getUserId())
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<UserInfo>() {
+                            @Override
+                            public void onCompleted() {
 
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onNext(UserInfo userInfo) {
+                                RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+
+                                    @Override
+                                    public io.rong.imlib.model.UserInfo getUserInfo(String userId) {
+
+                                        return new io.rong.imlib.model.UserInfo(String.valueOf(userInfo.getUserId()), userInfo.getNickname(), Uri.parse(userInfo.getIconUrl()));
+                                    }
+
+                                }, true);
+
+                                if (RongIM.getInstance() == null){
+                                    return ;
+                                }
+                                RongIM.getInstance().startPrivateChat(mActivity, String.valueOf(moment.getUserId()), userInfo.getNickname());
+                            }
+                        });
             }
         };
     }

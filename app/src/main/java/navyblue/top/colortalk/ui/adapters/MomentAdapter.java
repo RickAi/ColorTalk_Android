@@ -19,9 +19,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.mvp.models.Moment;
+import navyblue.top.colortalk.rest.ServiceFactory;
+import navyblue.top.colortalk.rest.models.UserInfo;
 import navyblue.top.colortalk.ui.listeners.OnMomentListener;
 import navyblue.top.colortalk.ui.widgets.RatioImageView;
 import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MomentAdapter
         extends RecyclerView.Adapter<MomentAdapter.ViewHolder> {
@@ -58,6 +63,30 @@ public class MomentAdapter
             viewHolder.momentText.setVisibility(View.GONE);
         }
         viewHolder.card.setTag(moment.getText());
+
+        ServiceFactory.getColorTalkSingleton().getUserInfo(moment.getUserId())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<UserInfo>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserInfo userInfo) {
+                        viewHolder.userNameText.setText(userInfo.getNickname());
+                        Glide.with(mContext)
+                                .load(userInfo.getIconUrl())
+                                .centerCrop()
+                                .into(viewHolder.userIconImage);
+                    }
+                });
 
         Glide.with(mContext)
                 .load(moment.getImage().getImageUrl())

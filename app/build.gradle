@@ -66,5 +66,6 @@ dependencies {
     compile 'me.zhanghai.android.patternlock:library:2.0.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.android.support:multidex:1.0.0'
+    compile 'com.github.medyo:android-about-page:1.0.8'
     compile project(':PG_Edit_SDK')
 }

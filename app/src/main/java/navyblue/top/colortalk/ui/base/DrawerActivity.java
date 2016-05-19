@@ -10,14 +10,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import navyblue.top.colortalk.R;
+import navyblue.top.colortalk.app.ColorTalkApp;
+import navyblue.top.colortalk.rest.ServiceFactory;
+import navyblue.top.colortalk.rest.models.UserInfo;
+import navyblue.top.colortalk.ui.fragments.AboutFragment;
 import navyblue.top.colortalk.ui.fragments.ChatListFragment;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
 import navyblue.top.colortalk.ui.fragments.PictureEditFragment;
 import navyblue.top.colortalk.ui.fragments.PrivateGalleryFragment;
 import navyblue.top.colortalk.ui.fragments.SettingFragment;
 import navyblue.top.colortalk.util.PatternLockUtils;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
@@ -32,7 +43,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
     protected static final int NAV_DRAWER_ITEM_INVALID = -1;
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+    protected NavigationView navigationView;
 
     FloatingActionButton fab;
 
@@ -64,6 +75,34 @@ public abstract class DrawerActivity extends ToolbarActivity {
             setSelectedItem(navigationView);
             navigationView.setCheckedItem(R.id.nav_main);
         }
+
+        View headerLayout = navigationView.getHeaderView(0);
+        final ImageView userIconImage = (ImageView) headerLayout.findViewById(R.id.iv_user_icon);
+        final TextView userNameText = (TextView) headerLayout.findViewById(R.id.tv_user_name);
+
+        ServiceFactory.getColorTalkSingleton().getUserInfo(ColorTalkApp.sAccount.getUserID())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<UserInfo>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserInfo userInfo) {
+                        userNameText.setText(userInfo.getNickname());
+                        Glide.with(DrawerActivity.this)
+                                .load(userInfo.getIconUrl())
+                                .centerCrop()
+                                .into(userIconImage);
+                    }
+                });
 
         logD(TAG, "navigation drawer setup finished");
     }
@@ -135,6 +174,9 @@ public abstract class DrawerActivity extends ToolbarActivity {
             case R.id.nav_picture_edit:
                 loadPictureEdit();
                 break;
+            case R.id.nav_about:
+                loadAboutContent();
+                break;
         }
     }
 
@@ -167,6 +209,12 @@ public abstract class DrawerActivity extends ToolbarActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, SettingFragment.newInstance()).commit();
         navigationView.setCheckedItem(R.id.nav_setting);
+    }
+
+    private void loadAboutContent(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, AboutFragment.newInstance()).commit();
+        navigationView.setCheckedItem(R.id.nav_about);
     }
 
     @Override

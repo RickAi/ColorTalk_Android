@@ -24,10 +24,6 @@ public class MainActivity extends DrawerActivity {
     public final static String TAG = "MainActivity";
     @Bind(R.id.fragment_container)
     FrameLayout mFragmentContainer;
-//    @Bind(R.id.tv_user_name)
-//    TextView mTvUserName;
-//    @Bind(R.id.iv_user_icon)
-//    CircleImageView mIvUserIcon;
 
     @Override
     protected int provideContentViewId() {
