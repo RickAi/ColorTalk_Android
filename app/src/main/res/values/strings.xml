@@ -28,6 +28,7 @@
     <string name="navigation_sub_items">Config</string>
     <string name="navigation_setting">Setting</string>
     <string name="navigation_about">About</string>
+    <string name="navigation_logout">Logout</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="action_settings">Settings</string>
 

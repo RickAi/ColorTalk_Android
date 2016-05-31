@@ -82,7 +82,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
 
     @Override
     public void loginCheck() {
-        if (AccountBean.existAccountCache()) {
+        if (AccountBean.existAccountCache() && !ColorTalkApp.logoutFlag) {
             mBaseView.showProcess();
             AccountBean account = AccountBean.getCachedAccount();
             ColorTalkApp.sAccount = account;

@@ -19,6 +19,7 @@ import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.app.ColorTalkApp;
 import navyblue.top.colortalk.rest.ServiceFactory;
 import navyblue.top.colortalk.rest.models.UserInfo;
+import navyblue.top.colortalk.ui.activities.LoginActivity;
 import navyblue.top.colortalk.ui.fragments.AboutFragment;
 import navyblue.top.colortalk.ui.fragments.ChatListFragment;
 import navyblue.top.colortalk.ui.fragments.MainFragment;
@@ -177,7 +178,16 @@ public abstract class DrawerActivity extends ToolbarActivity {
             case R.id.nav_about:
                 loadAboutContent();
                 break;
+            case R.id.nav_logout:
+                logout();
+                break;
         }
+    }
+
+    private void logout(){
+        ColorTalkApp.logoutFlag = true;
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     private void loadPictureEdit() {

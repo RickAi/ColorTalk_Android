@@ -20,6 +20,7 @@ public class ColorTalkApp extends MultiDexApplication {
 
     public static AccountBean sAccount = null;
     public static boolean postedImage;
+    public static boolean logoutFlag;
 
     //各个平台的配置，建议放在全局Application或者程序入口
     {
