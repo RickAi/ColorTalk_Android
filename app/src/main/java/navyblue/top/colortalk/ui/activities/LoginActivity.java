@@ -69,8 +69,6 @@ public class LoginActivity extends BaseLoginActivity
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        // TODO: 设置一个APP 入口，如果已经登陆成功就不再需要跳转到这个Activity 里了。
-
         initStatus();
         initVideo();
         initUmeng();

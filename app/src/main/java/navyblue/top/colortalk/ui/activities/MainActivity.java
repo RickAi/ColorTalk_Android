@@ -49,14 +49,6 @@ public class MainActivity extends DrawerActivity {
         startActivity(intent);
     }
 
-
-//    @Override
-//    protected void onPostCreate(Bundle savedInstanceState) {
-//        super.onPostCreate(savedInstanceState);
-//        new Handler().postDelayed(() -> setRequestDataRefresh(true), 358);
-//        mMainPresenter.loadMoments(true);
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.sample_actions, menu);

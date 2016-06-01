@@ -9,11 +9,4 @@
             android:targetPackage="navyblue.top.colortalk"
             android:targetClass="navyblue.top.colortalk.ui.activities.PatternLockActivity" />
     </Preference>
-
-    <Preference
-        android:title="@string/pref_title_about">
-        <intent
-            android:targetPackage="navyblue.top.colortalk"
-            android:targetClass="navyblue.top.colortalk.ui.activities.AboutActivity" />
-    </Preference>
 </PreferenceScreen>

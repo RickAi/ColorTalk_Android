@@ -35,8 +35,11 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:src="@drawable/icon_add"
-                app:borderWidth="0dp"
+                android:tint="@android:color/white"
+                app:rippleColor="#33728dff"
+                android:backgroundTint="@color/theme_primary_dark"
                 app:elevation="4dp"
+                app:borderWidth="0dp"
                 app:layout_anchor="@id/fragment_container"
                 app:layout_anchorGravity="right|bottom"
                 app:layout_behavior="navyblue.top.colortalk.ui.widgets.ScrollAwareFABBehavior"/>

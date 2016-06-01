@@ -35,7 +35,6 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:src="@mipmap/tmp_user_icon"
             app:civ_border_color="#FF000000"/>
 
         <TextView
