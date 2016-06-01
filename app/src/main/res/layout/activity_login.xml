@@ -33,7 +33,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="24dp">
 
                 <TextView
                     android:id="@+id/txt_logo"
@@ -45,20 +45,10 @@
                     android:clickable="true"
                     android:text="@string/app_name"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/app_primary"
+                    android:textColor="@color/theme_primary_dark"
                     android:textSize="45dp"
                     android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/txt_descricao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/txt_logo"
-                    android:layout_alignRight="@+id/txt_logo"
-                    android:layout_below="@+id/txt_logo"
-                    android:text="@string/app_decription"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/grey_600"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -85,8 +75,10 @@
                     <!--android:textColorHint="@color/abc_primary_text_material_dark" />-->
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
-                                                               android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/txt_password"
                         android:layout_width="match_parent"
@@ -146,19 +138,11 @@
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/login_btn"
                     android:text="@string/action_sign_in"
                     android:textColor="@color/grey_0"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="@string/different_login"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/grey_1000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -175,22 +159,22 @@
                     android:id="@+id/iv_weibo_login"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/umeng_socialize_sina_off"/>
+                    android:src="@drawable/icon_weibo"/>
                 <ImageView
                     android:id="@+id/iv_wechat_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="1"
-                    android:background="@drawable/umeng_socialize_wechat_gray"/>
+                    android:src="@drawable/icon_wechat"/>
                 <ImageView
                     android:id="@+id/iv_douban_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="1"
-                    android:background="@drawable/umeng_socialize_douban_off"/>
+                    android:src="@drawable/icon_douban"/>
                 <ImageView
                     android:id="@+id/iv_qq_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="1"
-                    android:background="@drawable/umeng_socialize_qq_off"/>
+                    android:src="@drawable/icon_qq"/>
 
             </LinearLayout>
 

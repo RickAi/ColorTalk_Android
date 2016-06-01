@@ -96,7 +96,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
         File videoFile;
         try {
             FileOutputStream fos = mActivity.openFileOutput(Constants.VIDEO_NAME, Context.MODE_PRIVATE);
-            InputStream in = mActivity.getResources().openRawResource(R.raw.welcome_video);
+            InputStream in = mActivity.getResources().openRawResource(R.raw.welcome);
             byte[] buff = new byte[1024];
             int len = 0;
             while ((len = in.read(buff)) != -1) {
