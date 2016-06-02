@@ -35,6 +35,15 @@ public class LoginActivity extends BaseLoginActivity
 
     private static final String TAG = "LoginActivity";
 
+    private static final int STATUS_LOGIN = 0;
+    private static final int STATUS_FORGET = 1;
+    private static final int STATUS_REGISTER = 2;
+
+
+    @Bind(R.id.layout_password)
+    View mPasswordLayout;
+    @Bind(R.id.layout_password_again)
+    View mPasswordAgainLayout;
     @Bind(R.id.vv_login)
     VideoView mVideoView;
     @Bind(R.id.login_progress)
@@ -43,6 +52,8 @@ public class LoginActivity extends BaseLoginActivity
     AutoCompleteTextView mTvEmail;
     @Bind(R.id.txt_password)
     EditText mEtPassword;
+    @Bind(R.id.txt_password_again)
+    EditText mEtPasswordAgain;
     @Bind(R.id.txt_forgot)
     TextView mTvForgot;
     @Bind(R.id.txt_create)
@@ -62,6 +73,8 @@ public class LoginActivity extends BaseLoginActivity
     /** auth callback interface**/
     private UMAuthListener umAuthListener;
     private ILoginPresenter mLoginPresenter;
+
+    private int status = STATUS_LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +122,12 @@ public class LoginActivity extends BaseLoginActivity
     }
 
     @Override
+    public void error() {
+        hideProcess();
+        Toast.makeText(LoginActivity.this, "There is a error happened!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void hideProcess() {
         mLoginProgress.setVisibility(View.GONE);
     }
@@ -118,6 +137,27 @@ public class LoginActivity extends BaseLoginActivity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void registerSuccess() {
+        loginStatus();
+        Toast.makeText(LoginActivity.this, "Register success, please login!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void forgetSuccess() {
+        loginStatus();
+        Toast.makeText(LoginActivity.this, "Already send a email, please check!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void loginStatus(){
+        status = STATUS_LOGIN;
+        mPasswordLayout.setVisibility(View.VISIBLE);
+        mPasswordAgainLayout.setVisibility(View.INVISIBLE);
+        mTvForgot.setVisibility(View.VISIBLE);
+        mTvRegister.setVisibility(View.VISIBLE);
+        mBtnSignIn.setText(getResources().getString(R.string.action_sign_in));
     }
 
     @Override
@@ -171,21 +211,77 @@ public class LoginActivity extends BaseLoginActivity
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if(status != STATUS_LOGIN){
+            loginStatus();
+            status = STATUS_LOGIN;
+        }
+    }
+
     private void setListeners() {
         mIvWeiboLogin.setOnClickListener(this);
         mIvDoubanLogin.setOnClickListener(this);
         mIvWechatLogin.setOnClickListener(this);
         mIvQqLogin.setOnClickListener(this);
+
+        mTvForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPasswordLayout.setVisibility(View.INVISIBLE);
+                mTvForgot.setVisibility(View.INVISIBLE);
+                mTvRegister.setVisibility(View.INVISIBLE);
+                mBtnSignIn.setText(getResources().getString(R.string.action_forget));
+                status = STATUS_FORGET;
+            }
+        });
+
+        mTvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPasswordLayout.setVisibility(View.VISIBLE);
+                mPasswordAgainLayout.setVisibility(View.VISIBLE);
+                mTvForgot.setVisibility(View.INVISIBLE);
+                mTvRegister.setVisibility(View.INVISIBLE);
+                mBtnSignIn.setText(getResources().getString(R.string.action_register));
+                status = STATUS_REGISTER;
+            }
+        });
         mBtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = mTvEmail.getText().toString();
-                String password = mEtPassword.getText().toString();
-                // TODO: 邮箱密码为空预先提示
-                // TODO: 密码错误或超时提示
 
-                showProcess();
-                mLoginPresenter.localLogin(email, password);
+                String email = mTvEmail.getText().toString();
+                String password;
+
+                switch (status){
+                    case STATUS_LOGIN:
+                        password = mEtPassword.getText().toString();
+                        // TODO: 邮箱密码为空预先提示
+                        // TODO: 密码错误或超时提示
+
+                        showProcess();
+                        mLoginPresenter.localLogin(email, password);
+                        break;
+                    case STATUS_REGISTER:
+                        showProcess();
+                        password = mEtPassword.getText().toString();
+                        String passwordAgain = mEtPasswordAgain.getText().toString();
+                        if(password.equals(passwordAgain)){
+                            mLoginPresenter.register(email, password);
+                        } else{
+                            Toast.makeText(LoginActivity.this, "Two password does not match!", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case STATUS_FORGET:
+                        showProcess();
+                        mLoginPresenter.forgetPassword(email);
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }

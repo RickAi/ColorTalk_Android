@@ -13,5 +13,7 @@ public interface ILoginPresenter extends IBasePresenter<ILoginView> {
     void localLogin(String email, String password);
     void loginCheck();
     File copyVideoFile();
+    void forgetPassword(String email);
+    void register(String email, String password);
 
 }

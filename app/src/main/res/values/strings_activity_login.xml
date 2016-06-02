@@ -4,7 +4,10 @@
     <string name="app_decription">Your awesome app</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_password_again">Password Again</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="action_register">Register</string>
+    <string name="action_forget">Send reset email</string>
     <string name="different_login">or</string>
     <string name="plus_sign_out">Change Google+ account</string>
     <string name="plus_disconnect">Disconnect from Google+</string>

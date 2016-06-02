@@ -6,7 +6,10 @@ package navyblue.top.colortalk.mvp.view.abs;
 public interface ILoginView extends IBaseView {
 
     void showProcess();
+    void error();
     void hideProcess();
     void gotoMainActivity();
+    void registerSuccess();
+    void forgetSuccess();
 
 }

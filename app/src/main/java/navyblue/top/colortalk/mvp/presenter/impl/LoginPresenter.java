@@ -67,9 +67,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
 
                     @Override
                     public void onError(Throwable e) {
-
-                        // TODO: 在这里进行一些网络错误报错
-
+                        mBaseView.error();
                     }
 
                     @Override
@@ -111,6 +109,54 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
         if (!videoFile.exists())
             throw new RuntimeException("video file has problem, are you sure you have welcome_video.mp4 in res/raw folder?");
         return videoFile;
+    }
+
+    @Override
+    public void forgetPassword(String email) {
+        Subscription s = sColorTalkService.forget(email)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<User>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mBaseView.error();
+                    }
+
+                    @Override
+                    public void onNext(User user) {
+                        mBaseView.forgetSuccess();
+                    }
+                });
+        addSubscription(s);
+    }
+
+    @Override
+    public void register(String email, String password) {
+        Subscription s = sColorTalkService.register(email, password)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<User>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mBaseView.error();
+                    }
+
+                    @Override
+                    public void onNext(User user) {
+                        mBaseView.registerSuccess();
+                    }
+                });
+        addSubscription(s);
     }
 
     private void cacheLoginAccount(final User user) {

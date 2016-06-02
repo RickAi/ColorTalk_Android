@@ -72,12 +72,12 @@ public interface ColorTalkService {
     @POST("images/private")
     Observable<ImageResponse> getPrivateImages(@Field("user_id") String user_id);
 
-    // ['name', 'email', 'password', 'is_third', 'gender', 'birthday'];
-    @FormUrlEncoded
-    @POST("register")
-    Observable<User> createUser(@Field("name") String name, @Field("email") String email,
-                                @Field("password") String password, @Field("is_third") String is_third,
-                                @Field("gender") String gender, @Field("birthday") String birthday);
+//    // ['name', 'email', 'password', 'is_third', 'gender', 'birthday'];
+//    @FormUrlEncoded
+//    @POST("register")
+//    Observable<User> createUser(@Field("name") String name, @Field("email") String email,
+//                                @Field("password") String password, @Field("is_third") String is_third,
+//                                @Field("gender") String gender, @Field("birthday") String birthday);
 
     // local ['email', 'password', 'is_third']
     @FormUrlEncoded
@@ -89,6 +89,16 @@ public interface ColorTalkService {
     @FormUrlEncoded
     @POST("login")
     Observable<User> login( @Field("uid") String uid, @Field("is_third") int is_third);
+
+    //  ['email', 'password']
+    @FormUrlEncoded
+    @POST("register")
+    Observable<User> register( @Field("email") String email, @Field("password") String password);
+
+    //  ['email']
+    @FormUrlEncoded
+    @POST("forget")
+    Observable forget( @Field("email") String email);
 
     @FormUrlEncoded
     @POST("token/rong")
