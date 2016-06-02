@@ -135,11 +135,8 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //
-        //Fragment f = getFragmentManager().findFragmentByTag();
-        //f.onActivityResult(requestCode,resultCode,data);
-        //
-
+        // todo 解决图片回调 Bug
+        Toast.makeText(getContext(), "hi!", Toast.LENGTH_SHORT).show();
 
         if (requestCode == REQUEST_CODE_PICK_PICTURE
                 && resultCode == Activity.RESULT_OK
@@ -163,7 +160,6 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
 
             return;
         }
-
 
         //check here
         if (requestCode == PGEditSDK.PG_EDIT_SDK_REQUEST_CODE

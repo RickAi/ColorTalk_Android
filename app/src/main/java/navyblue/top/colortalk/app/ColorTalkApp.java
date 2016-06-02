@@ -26,11 +26,9 @@ public class ColorTalkApp extends MultiDexApplication {
     {
         //新浪微博
         PlatformConfig.setSinaWeibo("2866580998", "0bb01987aa2965717cae207eec76b2e4");
-
         //微信    wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
         PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
-        //豆瓣RENREN平台目前只能在服务器端配置
-        PlatformConfig.setTwitter("3aIN7fuF685MuZ7jtXkQxalyi", "MK6FEYG63eWcpDFgRYw4w9puJhzDl0tyuqWjZ3M7XJuuG7mMbO");
+        PlatformConfig.setQQZone("1105445844", "vASFNuxVVJif78EK");
     }
 
     @Override

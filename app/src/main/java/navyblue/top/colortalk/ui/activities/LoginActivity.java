@@ -8,7 +8,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +46,7 @@ public class LoginActivity extends BaseLoginActivity
     @Bind(R.id.vv_login)
     VideoView mVideoView;
     @Bind(R.id.login_progress)
-    ProgressBar mLoginProgress;
+    View mLoginProgress;
     @Bind(R.id.txt_email)
     AutoCompleteTextView mTvEmail;
     @Bind(R.id.txt_password)
@@ -70,7 +69,9 @@ public class LoginActivity extends BaseLoginActivity
     ImageView mIvQqLogin;
 
     private UMShareAPI mShareAPI;
-    /** auth callback interface**/
+    /**
+     * auth callback interface
+     **/
     private UMAuthListener umAuthListener;
     private ILoginPresenter mLoginPresenter;
 
@@ -103,13 +104,14 @@ public class LoginActivity extends BaseLoginActivity
     @Override
     public void onClick(View view) {
         SHARE_MEDIA platform = null;
-        if (view.getId() == R.id.iv_weibo_login){
+
+        if (view.getId() == R.id.iv_weibo_login) {
             platform = SHARE_MEDIA.SINA;
-        }else if (view.getId() == R.id.iv_wechat_login){
+        } else if (view.getId() == R.id.iv_wechat_login) {
             platform = SHARE_MEDIA.WEIXIN;
-        }else if (view.getId() == R.id.iv_douban_login){
+        } else if (view.getId() == R.id.iv_douban_login) {
             platform = SHARE_MEDIA.DOUBAN;
-        }else if (view.getId() == R.id.iv_qq_login){
+        } else if (view.getId() == R.id.iv_qq_login) {
             platform = SHARE_MEDIA.QQ;
         }
         /**begin invoke umeng api**/
@@ -151,7 +153,7 @@ public class LoginActivity extends BaseLoginActivity
         Toast.makeText(LoginActivity.this, "Already send a email, please check!", Toast.LENGTH_SHORT).show();
     }
 
-    private void loginStatus(){
+    private void loginStatus() {
         status = STATUS_LOGIN;
         mPasswordLayout.setVisibility(View.VISIBLE);
         mPasswordAgainLayout.setVisibility(View.INVISIBLE);
@@ -164,6 +166,7 @@ public class LoginActivity extends BaseLoginActivity
     public void onFailure(Throwable e) {
 
     }
+
 
     private void initStatus() {
         mLoginPresenter = new LoginPresenter();
@@ -189,7 +192,7 @@ public class LoginActivity extends BaseLoginActivity
 
             @Override
             public void onCancel(SHARE_MEDIA platform, int action) {
-                Toast.makeText(LoginActivity.this , "Authorize cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Authorize cancel", Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -213,11 +216,11 @@ public class LoginActivity extends BaseLoginActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
-        if(status != STATUS_LOGIN){
+        if (status != STATUS_LOGIN) {
             loginStatus();
             status = STATUS_LOGIN;
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -256,7 +259,7 @@ public class LoginActivity extends BaseLoginActivity
                 String email = mTvEmail.getText().toString();
                 String password;
 
-                switch (status){
+                switch (status) {
                     case STATUS_LOGIN:
                         password = mEtPassword.getText().toString();
                         // TODO: 邮箱密码为空预先提示
@@ -269,9 +272,9 @@ public class LoginActivity extends BaseLoginActivity
                         showProcess();
                         password = mEtPassword.getText().toString();
                         String passwordAgain = mEtPasswordAgain.getText().toString();
-                        if(password.equals(passwordAgain)){
+                        if (password.equals(passwordAgain)) {
                             mLoginPresenter.register(email, password);
-                        } else{
+                        } else {
                             Toast.makeText(LoginActivity.this, "Two password does not match!", Toast.LENGTH_SHORT).show();
                         }
                         break;
