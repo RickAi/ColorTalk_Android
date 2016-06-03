@@ -98,7 +98,7 @@ public interface ColorTalkService {
     //  ['email']
     @FormUrlEncoded
     @POST("forget")
-    Observable forget( @Field("email") String email);
+    Observable<User> forget( @Field("email") String email);
 
     @FormUrlEncoded
     @POST("token/rong")

@@ -31,6 +31,7 @@ import navyblue.top.colortalk.util.PatternLockUtils;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import us.pinguo.edit.sdk.base.PGEditSDK;
 
 import static navyblue.top.colortalk.util.LogUtil.logD;
 import static navyblue.top.colortalk.util.LogUtil.makeLogTag;
@@ -46,6 +47,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     private DrawerLayout drawerLayout;
     protected NavigationView navigationView;
+    private PictureEditFragment pictureEditFragment;
 
     FloatingActionButton fab;
 
@@ -111,6 +113,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     /**
      * Updated the checked item in the navigation drawer
+     *
      * @param navigationView the navigation view
      */
     private void setSelectedItem(NavigationView navigationView) {
@@ -121,6 +124,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     /**
      * Creates the item click listener.
+     *
      * @param navigationView the navigation view
      */
     private void setupDrawerSelectListener(NavigationView navigationView) {
@@ -137,10 +141,11 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     /**
      * Handles the navigation item click.
+     *
      * @param itemId the clicked item
      */
     private void onNavigationItemClicked(final int itemId) {
-        if(itemId == getSelfNavDrawerItem()) {
+        if (itemId == getSelfNavDrawerItem()) {
             // Already selected
             closeDrawer();
             return;
@@ -151,6 +156,7 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     /**
      * Handles the navigation item click and starts the corresponding activity.
+     *
      * @param item the selected navigation item
      */
     private void goToNavDrawerItem(int item) {
@@ -164,9 +170,9 @@ public abstract class DrawerActivity extends ToolbarActivity {
                 loadChatList();
                 break;
             case R.id.nav_gallery:
-                if(PatternLockUtils.hasPattern(this)){
+                if (PatternLockUtils.hasPattern(this)) {
                     PatternLockUtils.confirmPatternIfHas(this);
-                } else{
+                } else {
                     loadPrivateGallery();
                 }
                 break;
@@ -185,44 +191,45 @@ public abstract class DrawerActivity extends ToolbarActivity {
         }
     }
 
-    private void logout(){
+    private void logout() {
         ColorTalkApp.logoutFlag = true;
         finish();
         startActivity(new Intent(this, LoginActivity.class));
     }
 
     private void loadPictureEdit() {
+        pictureEditFragment = PictureEditFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, PictureEditFragment.newInstance()).commitAllowingStateLoss();
+                .replace(R.id.fragment_container, pictureEditFragment).commitAllowingStateLoss();
         navigationView.setCheckedItem(R.id.nav_picture_edit);
     }
 
-    private void loadMain(){
+    private void loadMain() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, MainFragment.newInstance()).commitAllowingStateLoss();
         fab.setVisibility(View.VISIBLE);
         navigationView.setCheckedItem(R.id.nav_main);
     }
 
-    private void loadChatList(){
+    private void loadChatList() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, ChatListFragment.newInstance(this)).commit();
         navigationView.setCheckedItem(R.id.nav_chat);
     }
 
-    private void loadPrivateGallery(){
+    private void loadPrivateGallery() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, PrivateGalleryFragment.newInstance()).commitAllowingStateLoss();
         navigationView.setCheckedItem(R.id.nav_gallery);
     }
 
-    private void loadSettingContent(){
+    private void loadSettingContent() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, SettingFragment.newInstance()).commit();
         navigationView.setCheckedItem(R.id.nav_setting);
     }
 
-    private void loadAboutContent(){
+    private void loadAboutContent() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, AboutFragment.newInstance()).commit();
         navigationView.setCheckedItem(R.id.nav_about);
@@ -230,11 +237,18 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN){
+        Toast.makeText(DrawerActivity.this, "DrawActivity", Toast.LENGTH_SHORT).show();
+
+        if (requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN) {
             if (resultCode != Activity.RESULT_OK) {
                 loadMain();
-            } else{
+            } else {
                 loadPrivateGallery();
+            }
+        } else if (requestCode == PGEditSDK.PG_EDIT_SDK_REQUEST_CODE
+                && resultCode == Activity.RESULT_OK) {
+            if (pictureEditFragment != null) {
+                pictureEditFragment.refreshEdit(data);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -249,14 +263,14 @@ public abstract class DrawerActivity extends ToolbarActivity {
     }
 
     protected void openDrawer() {
-        if(drawerLayout == null)
+        if (drawerLayout == null)
             return;
 
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
     protected void closeDrawer() {
-        if(drawerLayout == null)
+        if (drawerLayout == null)
             return;
 
         drawerLayout.closeDrawer(GravityCompat.START);

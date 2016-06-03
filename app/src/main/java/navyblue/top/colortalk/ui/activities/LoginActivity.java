@@ -143,12 +143,14 @@ public class LoginActivity extends BaseLoginActivity
 
     @Override
     public void registerSuccess() {
+        hideProcess();
         loginStatus();
         Toast.makeText(LoginActivity.this, "Register success, please login!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void forgetSuccess() {
+        hideProcess();
         loginStatus();
         Toast.makeText(LoginActivity.this, "Already send a email, please check!", Toast.LENGTH_SHORT).show();
     }

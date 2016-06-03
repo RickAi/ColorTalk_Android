@@ -121,8 +121,6 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         }
 
         PGEditSDK.instance().startEdit(mActivity, PGEditActivity.class, mPicturePath, outFilePath);
-
-
     }
 
     public void startChoosePhoto(View v) {
@@ -136,7 +134,7 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         super.onActivityResult(requestCode, resultCode, data);
 
         // todo 解决图片回调 Bug
-        Toast.makeText(getContext(), "hi!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "PictureEditFragment!", Toast.LENGTH_SHORT).show();
 
         if (requestCode == REQUEST_CODE_PICK_PICTURE
                 && resultCode == Activity.RESULT_OK
@@ -184,6 +182,14 @@ public class PictureEditFragment extends BaseFragment implements IPictureEditVie
         }
     }
 
+    public void refreshEdit(Intent data){
+        PGEditResult editResult = PGEditSDK.instance().handleEditResult(data);
+
+        mImage.setImageBitmap(editResult.getThumbNail());
+
+        Toast.makeText(mActivity, "Photo saved to:" + editResult.getReturnPhotoPath(), Toast.LENGTH_LONG).show();
+        enterReEditState();
+    }
 
     private void enterReEditState() {
         mEditBtn.setVisibility(View.GONE);
