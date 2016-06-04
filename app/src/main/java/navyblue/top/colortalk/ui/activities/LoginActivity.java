@@ -87,6 +87,12 @@ public class LoginActivity extends BaseLoginActivity
         initVideo();
         initUmeng();
         setListeners();
+
+        String showWhatsNew = "APPIntro";
+//        if (!Once.beenDone(Once.THIS_APP_VERSION, showWhatsNew)) {
+            startActivity(new Intent(this, AppIntroActivity.class));
+//            Once.markDone(showWhatsNew);
+//        }
     }
 
     @Override

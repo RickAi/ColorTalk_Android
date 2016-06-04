@@ -237,8 +237,6 @@ public abstract class DrawerActivity extends ToolbarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(DrawerActivity.this, "DrawActivity", Toast.LENGTH_SHORT).show();
-
         if (requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN) {
             if (resultCode != Activity.RESULT_OK) {
                 loadMain();

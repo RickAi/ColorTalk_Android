@@ -56,9 +56,8 @@ public class PGEditActivity extends FragmentActivity {
         }
     }
 
-        @Override
+    @Override
     protected void onDestroy() {
-
         mPGEditController.onDestroy();
         super.onDestroy();
     }

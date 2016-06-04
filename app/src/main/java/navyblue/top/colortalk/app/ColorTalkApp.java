@@ -8,6 +8,7 @@ import com.activeandroid.ActiveAndroid;
 import com.umeng.socialize.PlatformConfig;
 
 import io.rong.imkit.RongIM;
+import jonathanfinerty.once.Once;
 import navyblue.top.colortalk.db.beans.AccountBean;
 import navyblue.top.colortalk.util.ToastUtils;
 import us.pinguo.edit.sdk.PGEditImageLoader;
@@ -35,6 +36,7 @@ public class ColorTalkApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
+        Once.initialise(this);
         if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext())) ||
                 "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
             RongIM.init(this);
