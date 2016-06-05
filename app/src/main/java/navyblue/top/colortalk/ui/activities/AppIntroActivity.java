@@ -23,6 +23,7 @@ public class AppIntroActivity extends AppIntro2 {
         addSlide(SampleSlide.newInstance(R.layout.intro_2));
         addSlide(SampleSlide.newInstance(R.layout.intro3));
         addSlide(SampleSlide.newInstance(R.layout.intro4));
+        addSlide(SampleSlide.newInstance(R.layout.intro5));
     }
 
     @Override

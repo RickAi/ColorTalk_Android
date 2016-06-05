@@ -820,12 +820,12 @@
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f629.png"
     },
     {
-        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_default_portrait.png",
-        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_default_portrait.png"
-    },
-    {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_voice_sent_play1.png",
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_voice_sent_play1.png"
+    },
+    {
+        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_default_portrait.png",
+        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_default_portrait.png"
     },
     {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_volume_cancel.png",

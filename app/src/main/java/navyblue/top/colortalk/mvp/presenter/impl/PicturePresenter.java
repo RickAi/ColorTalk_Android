@@ -7,6 +7,10 @@ import android.net.Uri;
 import android.os.Environment;
 
 import com.squareup.picasso.Picasso;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,19 +33,41 @@ import rx.schedulers.Schedulers;
 public class PicturePresenter extends BasePresenter<IPictureView> implements IPicturePresenter {
 
     @Override
-    public void shareImage(String imageUrl, String imageDesc) {
+    public void shareImage(final String imageUrl, final String imageDesc) {
         saveImageAndGetPathObservable(mActivity, imageUrl, imageDesc)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(uri -> shareImage(mActivity, uri, "share the image to..."),
+                .subscribe(uri -> shareImage(mActivity, uri, "share the image to...", imageUrl, imageDesc),
                         error -> ToastUtils.showLong(error.getMessage()));
     }
 
-    private void shareImage(Context context, Uri uri, String title) {
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        shareIntent.setType("image/jpeg");
-        context.startActivity(Intent.createChooser(shareIntent, title));
+    private void shareImage(Context context, Uri uri, String title, String imageUrl, String imageDesc) {
+        final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
+                {
+                        SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SINA,
+                        SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,SHARE_MEDIA.DOUBAN
+                };
+        new ShareAction(mActivity).setDisplayList( displaylist )
+                .withText(imageDesc)
+                .withTitle("ColorTalk image share test")
+                .withTargetUrl("http://navyblue.top")
+                .withMedia(new UMImage(mActivity, imageUrl))
+                .setListenerList(new UMShareListener() {
+                    @Override
+                    public void onResult(SHARE_MEDIA share_media) {
+                        ToastUtils.showShort("Shared success!");
+                    }
+
+                    @Override
+                    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onCancel(SHARE_MEDIA share_media) {
+
+                    }
+                })
+                .open();
     }
 
     @Override

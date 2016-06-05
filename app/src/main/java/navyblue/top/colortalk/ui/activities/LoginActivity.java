@@ -90,7 +90,7 @@ public class LoginActivity extends BaseLoginActivity
 
         String showWhatsNew = "APPIntro";
 //        if (!Once.beenDone(Once.THIS_APP_VERSION, showWhatsNew)) {
-            startActivity(new Intent(this, AppIntroActivity.class));
+        startActivity(new Intent(this, AppIntroActivity.class));
 //            Once.markDone(showWhatsNew);
 //        }
     }
