@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

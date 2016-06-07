@@ -42,9 +42,6 @@ public class PageInfo {
          * previous : http://colortalk.navyblue.top/api/moments?page=1
          */
 
-        @SerializedName("links")
-        private LinksEntity links;
-
         public void setTotal(int total) {
             this.total = total;
         }
@@ -63,10 +60,6 @@ public class PageInfo {
 
         public void setTotalPages(int totalPages) {
             this.totalPages = totalPages;
-        }
-
-        public void setLinks(LinksEntity links) {
-            this.links = links;
         }
 
         public int getTotal() {
@@ -89,21 +82,5 @@ public class PageInfo {
             return totalPages;
         }
 
-        public LinksEntity getLinks() {
-            return links;
-        }
-
-        public static class LinksEntity {
-            @SerializedName("previous")
-            private String previous;
-
-            public void setPrevious(String previous) {
-                this.previous = previous;
-            }
-
-            public String getPrevious() {
-                return previous;
-            }
-        }
     }
 }

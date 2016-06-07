@@ -67,6 +67,33 @@ public class MainFragment extends SwipeRefreshFragment implements IMainView {
         mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this, mActivity);
 
+        ServiceFactory.getColorTalkSingleton().getUserInfo(ColorTalkApp.getUserID())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<UserInfo>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(final UserInfo userInfo) {
+                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+
+                            @Override
+                            public io.rong.imlib.model.UserInfo getUserInfo(String userId) {
+                                return new io.rong.imlib.model.UserInfo(String.valueOf(userInfo.getUserId()), userInfo.getNickname(), Uri.parse(userInfo.getIconUrl()));
+                            }
+
+                        }, true);
+                    }
+                });
+
         mMomentList = new ArrayList<>();
         setupRecyclerView();
     }

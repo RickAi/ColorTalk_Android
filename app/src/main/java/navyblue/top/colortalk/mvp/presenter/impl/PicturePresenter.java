@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.editorpage.ShareActivity;
 import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.ShareBoardlistener;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,10 +47,10 @@ public class PicturePresenter extends BasePresenter<IPictureView> implements IPi
     private void shareImage(Context context, Uri uri, String title, String imageUrl, String imageDesc) {
         final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
                 {
-                        SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SINA,
-                        SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,SHARE_MEDIA.DOUBAN
+                        SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.SINA,
+                        SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.DOUBAN
                 };
-        new ShareAction(mActivity).setDisplayList( displaylist )
+        new ShareAction(mActivity).setDisplayList(displaylist)
                 .withText(imageDesc)
                 .withTitle("ColorTalk image share test")
                 .withTargetUrl("http://navyblue.top")
@@ -86,7 +90,8 @@ public class PicturePresenter extends BasePresenter<IPictureView> implements IPi
 
     private Observable<Uri> saveImageAndGetPathObservable(Context context, String url, String title) {
         return Observable.create(new Observable.OnSubscribe<Bitmap>() {
-            @Override public void call(Subscriber<? super Bitmap> subscriber) {
+            @Override
+            public void call(Subscriber<? super Bitmap> subscriber) {
                 Bitmap bitmap = null;
                 try {
                     bitmap = Picasso.with(context).load(url).get();

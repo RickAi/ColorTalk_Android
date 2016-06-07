@@ -54,7 +54,7 @@ public class MomentAdapter
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         Moment moment = mList.get(position);
-        int limit = 48;
+        int limit = 108;
         String text = moment.getText().length() > limit ? moment.getText().substring(0, limit) +
                 "..." : moment.getText();
         viewHolder.moment = moment;

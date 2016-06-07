@@ -44,7 +44,7 @@
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:text="Sharing your daily or wonderful pictures to others!"/>
+        android:text="Chat with others directly!"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

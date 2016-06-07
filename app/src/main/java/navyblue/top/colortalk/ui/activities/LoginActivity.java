@@ -22,6 +22,7 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import jonathanfinerty.once.Once;
 import navyblue.top.colortalk.R;
 import navyblue.top.colortalk.app.Constants;
 import navyblue.top.colortalk.mvp.presenter.abs.ILoginPresenter;
@@ -89,10 +90,10 @@ public class LoginActivity extends BaseLoginActivity
         setListeners();
 
         String showWhatsNew = "APPIntro";
-//        if (!Once.beenDone(Once.THIS_APP_VERSION, showWhatsNew)) {
-        startActivity(new Intent(this, AppIntroActivity.class));
-//            Once.markDone(showWhatsNew);
-//        }
+        if (!Once.beenDone(Once.THIS_APP_VERSION, showWhatsNew)) {
+            startActivity(new Intent(this, AppIntroActivity.class));
+            Once.markDone(showWhatsNew);
+        }
     }
 
     @Override

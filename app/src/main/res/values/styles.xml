@@ -12,8 +12,6 @@
         <item name="patternViewStyle">@style/PatternView.Light</item>
     </style>
 
-    <style name="Theme.UMDefault" parent="android:style/Theme.NoTitleBar"></style>
-
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:background">?attr/colorPrimary</item>
     </style>

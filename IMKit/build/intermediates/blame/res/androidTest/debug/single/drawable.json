@@ -80,12 +80,12 @@
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_btn_voice.xml"
     },
     {
-        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_ic_extend.xml",
-        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_ic_extend.xml"
-    },
-    {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_btn_answer_selector.xml",
         "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_btn_answer_selector.xml"
+    },
+    {
+        "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_ic_extend.xml",
+        "source": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/bundles/debug/res/drawable/rc_ic_extend.xml"
     },
     {
         "merged": "/Users/CIR/AndroidStudioProjects/ColorTalk/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_btn_refuse_selector.xml",
